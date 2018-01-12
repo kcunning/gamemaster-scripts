@@ -5,11 +5,13 @@
 from random import randint
 from datetime import datetime
 
-def get_rolls(dtypes):
+def get_rolls(dtypes, n):
     r = {}
     r['time'] = datetime.now()
+    r['plus'] = n
     for dt in dtypes:
-        r[dt] = randint(1, dt)
+        num = randint(1, dt)
+        r[dt] = str(num) + "/" + str(num + n)
     return r
 
 def print_rolls(rolls, dtypes):
@@ -19,9 +21,10 @@ def print_rolls(rolls, dtypes):
 
 def print_roll_history(history, dice_types):
     for log in history:
-        print log['time'].strftime("%H:%M:%S"),
+        print log['time'].strftime("%H:%M:%S"), "Modifier:", log['plus']
+        print "\t",
         for dt in dice_types:
-            print dt, "->", log[dt], "||",
+            print str(dt) + "->" + log[dt],
         print
 
 dice_types = [2, 4, 6, 8, 10, 12, 20, 100]
@@ -36,7 +39,15 @@ while True:
         print_roll_history(roll_log, dice_types)
         continue
 
-    rolls = get_rolls(dice_types)
+    if len(c) > 1 and c[0] == '-' and c[1:].isdigit():
+        # It's a negative number!
+        n = int(c[1:]) * -1
+    elif c.isdigit():
+        n = int(c)
+    else:
+        n = 0
+
+    rolls = get_rolls(dice_types, n)
     roll_log.append(rolls)
     print_rolls(rolls, dice_types)
 
