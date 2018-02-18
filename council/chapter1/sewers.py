@@ -24,23 +24,23 @@ def intersection():
 def encounter():
     r = random.randint(1, 100)
     if r < 36:
-        return "Hellnights (3)!"
+        return "Hellnights (3)! Any map."
     elif r < 46:
-        return "Ooze bugs (8)"
+        return "Ooze bugs (8). Any map."
     elif r < 56:
-        return "Goblin patrol (1)"
+        return "Goblin patrol (1). A1, A2, A3"
     elif r < 61:
-        return "Goblin lair (3)"
+        return "Goblin lair (3). A4, A5, A6."
     elif r < 76:
         r2 = random.randint(1, 100)
         if r2 < 76:
-            return "Undead (3 skeletons)"
+            return "Undead (3 skeletons). A1, A3"
         else:
-            return "Undead (2 zombies)"
+            return "Undead (2 zombies), A1, A3"
     elif r < 86:
-        return "Hazard"
+        return "Hazard. A1, A2, A3, A5."
     elif r < 91:
-        return "Cache"
+        return "Cache. D20 Perception. A2, A4, A5, A6."
     else:
         return "Special"
 
