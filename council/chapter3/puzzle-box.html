@@ -144,6 +144,7 @@
 		}
 
 		function checkHintLevel(lvl, num) {
+			console.log("Checking hint level", lvl, num)
 			if (lvl == 4) {
 				return 4 // Nothing to do here
 			}
@@ -179,11 +180,12 @@
 				'seven', 'eight']
 			
 			var secret = shuffle(vals);
-			var hintLevel = 1;
+			var hintLevel = 0;
 			var tries = 0;
 			var maxTries = 8;
 			var pTries = document.getElementById('tries');
 			setTries(tries, maxTries)
+			maxRight = 0;
 			console.log(secret)
 
 			// Adding the click event to buttons
@@ -196,12 +198,15 @@
 					// Do we need to do a check?
 					status = check(clicked, secret);
 					if (status == "reset") {
+						if (clicked.length-1 > maxRight) 
+							{ maxRight = clicked.length-1}
 						reset();
 						revealCards(secret, hintLevel)
 						tries++;
+						console.log("Clicked:", clicked)
 						if (tries >= maxTries) {
 							console.log("Sending", hintLevel, clicked.length)
-							hintLevel = checkHintLevel(hintLevel, clicked.length)
+							hintLevel = checkHintLevel(hintLevel, maxRight)
 							console.log("Hint level:", hintLevel)
 							secret = shuffle(vals);	
 							console.log("New secret", secret)
@@ -209,11 +214,12 @@
 							randomColors();
 							revealCards(secret, hintLevel)
 							tries = 0;
+							maxRight = 0;
 							setTries(tries, maxTries)
 						} else {
 							setTries(tries, maxTries)
 						}
-						clicked = [];
+						clicked = secret.slice(0, hintLevel)
 					} else if (status == "solved") {
 						solved()
 					}
