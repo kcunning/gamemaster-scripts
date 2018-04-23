@@ -145,6 +145,12 @@
 
 		function checkHintLevel(lvl, num) {
 			console.log("Checking hint level", lvl, num)
+			// 1 = first three. Another lvl for each two.
+			if (num < 3) {
+				return lvl // too low. Do nothing.
+			}
+
+			
 			if (lvl == 4) {
 				return 4 // Nothing to do here
 			}
