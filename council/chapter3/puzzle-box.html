@@ -21,6 +21,15 @@
 			color: red;
 		} 
 
+		@media (max-width: 1050px) { 
+			button.symbol:hover {
+				color: white;
+			} 
+		}
+
+		// Landscape phone to portrait tablet
+		@media (max-width: 768px) { ... }
+
 		button.symbol.clicked {
 			color: yellow;
 			background-color: red;
@@ -113,20 +122,26 @@
 			setTimeout(function () {
 				loops++;
 				var btns = document.getElementsByClassName('symbol');
-				var colors = ["blue", "aliceblue", "aqua", "blueviolet",
-					"Indigo", "purple", "slateblue", "rebeccapurple",
-					"steelblue", "slategrey"]
-				var r = getRandomInt(btns.length);
-				var c = getRandomInt(colors.length);
-				btns[r].setAttribute("style", "background-color:" + colors[c])
-				if (loops <= 30) {
+				// var colors = ["blue", "aliceblue", "aqua", "blueviolet",
+				// 	"Indigo", "purple", "slateblue", "rebeccapurple",
+				// 	"steelblue", "slategrey"]
+				var colors = ['DarkRed', 'FireBrick', 'Red', 'Crimson', 'IndianRed', 
+					'OrangeRed', 'Tomato', 'DarkOrange', 'Maroon', 'Brown', ]
+				// var r = getRandomInt(btns.length);
+				// var c = getRandomInt(colors.length);
+				// btns[r].setAttribute("style", "background-color:" + colors[c])
+				for (r=0;r<btns.length;r++) {
+					var c = getRandomInt(colors.length);
+					btns[r].setAttribute("style", "background-color:" + colors[c])
+				}
+				if (loops <= 40) {
 					randLoop()
 				} else {
 					for (i=0;i<btns.length;i++) {
 						btns[i].removeAttribute('style')
 					}
 				}
-			}, 200)
+			}, 100)
 		}
 
 		function randomColors() {
@@ -145,23 +160,27 @@
 
 		function checkHintLevel(lvl, num) {
 			console.log("Checking hint level", lvl, num)
-			// 1 = first three. Another lvl for each two.
+
+			// If they only got 0-2 right, don't change the level
 			if (num < 3) {
-				return lvl // too low. Do nothing.
+				return lvl
 			}
 
-			
-			if (lvl == 4) {
-				return 4 // Nothing to do here
-			}
-			if (num >= 7 & lvl != 3) {
-				return 3
-			} else if (num >= 5 & lvl <= 2) {
-				return 2
-			} else if (num >= 3 & lvl <= 1) {
+			// The first level is when you get three right. After that,
+			// it's every two (for now)
+
+			if (num >= 3 & lvl < 1) {
 				return 1
 			}
-			return lvl
+
+			n = Math.floor((num - 3) / 2) + 1 ;
+			console.log("New level might be", n)
+
+			if (n > lvl) {
+				return n
+			} else {
+				return lvl
+			}
 		}
 
 		function revealCards(secret, hintLevel) {
@@ -200,7 +219,7 @@
 			var tries = 0;
 			var maxTries = 8;
 			var pTries = document.getElementById('tries');
-			setTries(tries, maxTries)
+			// setTries(tries, maxTries)
 			maxRight = 0;
 			console.log(secret)
 			revealCards(secret, hintLevel)
@@ -227,14 +246,14 @@
 							console.log("Hint level:", hintLevel)
 							secret = shuffle(vals);	
 							console.log("New secret", secret)
-							pTries.textContent = ""
+							// pTries.textContent = ""
 							randomColors();
 							revealCards(secret, hintLevel)
 							tries = 0;
 							maxRight = 0;
-							setTries(tries, maxTries)
+							// setTries(tries, maxTries)
 						} else {
-							setTries(tries, maxTries)
+							// setTries(tries, maxTries)
 						}
 						clicked = secret.slice(0, hintLevel)
 					} else if (status == "solved") {
@@ -250,7 +269,7 @@
 	</script>
 </head>
 <body>
-	<p id="tries"></p>
+	<!-- <p id="tries"></p> -->
 	<p>
 		<button class="symbol" id="one">ᚪ</button>
 		<button class="symbol" id="two">ᛉ</button>
