@@ -58,8 +58,16 @@ def print_row(row):
     else:
         print 
 
+def print_tsv(vals):
+    keys = vals[0].keys()
+    print "\t".join(keys)
+    for val in vals:
+        for key in keys:
+            print val[key], "\t",
+        print
+
 def get_event(table, val):
-    keys = t.keys()
+    keys = table.keys()
     keys.sort()
     # Go until you find the min that's too much
     for i in range(len(keys)):
@@ -68,4 +76,66 @@ def get_event(table, val):
         elif val < keys[i]:
             return keys[0]
     return keys[-1]
+
+def check_event_type(table, i):
+    ''' Some rows require a re-roll on another table.
+    '''
+    # Building specific event?
+    pass
+
+def main():
+    print "Starting a new downtime session!"
+    while True:
+        num = raw_input("How many days? ")
+        if not num.isdigit():
+            print num, "is not valid."
+            num = raw_input("How many days? ")
+        else:
+            break
+
+    days = []
+    # filename = select_table()
+    table = get_roll_table("tables/generic_building_events.txt")
+    print "What building type? (Do not select generic)"
+    bfile = select_table()
+    btable = get_roll_table(bfile)
+    for i in range(int(num)):
+        print "Working on day", i + 1
+        r = randint(1, 101)
+        e = get_event(table, r)
+        if table[e]['title'].lower() == "building-specific event":
+            print "Building specific event..."
+            r = randint(1, 101)
+            e = get_event(btable, r)
+            days.append(btable[e])
+            days[-1]['table'] = bfile
+            days[-1]['day'] = i + 1
+            print_row(btable[e])
+            continue
+        if table[e]['title'].lower() =="roll twice":
+            print "Rolling twice..."
+            for j in [1, 2]:
+                print "Roll", j
+                r = randint(1, 101)
+                e = get_event(table, r) 
+                if table[e]['title'].lower() == "building-specific event":
+                    print "Building specific event..."
+                    r = randint(1, 101)
+                    e = get_event(btable, r)
+                    days.append(btable[e])
+                    days[-1]['table'] = bfile
+                    days[-1]['day'] = i + 1
+                    print_row(btable[e])
+                else:
+                    days.append(table[e])
+                    days[-1]['table'] = "generic"
+                    days[-1]['day'] = i + 1
+                    print_row(table[e])
+
+        days.append(table[e])
+        days[-1]['table'] = "generic"
+        days[-1]['day'] = i + 1
+        print_row(table[e])
+
+    return days
 
