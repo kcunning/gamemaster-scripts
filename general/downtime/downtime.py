@@ -63,7 +63,7 @@ def print_tsv(vals):
     print "\t".join(keys)
     for val in vals:
         for key in keys:
-            print val[key], "\t",
+            print val[key], " \t ",
         print
 
 def get_event(table, val):
@@ -107,7 +107,7 @@ def main():
             print "Building specific event..."
             r = randint(1, 101)
             e = get_event(btable, r)
-            days.append(btable[e])
+            days.append(dict(btable[e]))
             days[-1]['table'] = bfile
             days[-1]['day'] = i + 1
             print_row(btable[e])
@@ -122,17 +122,18 @@ def main():
                     print "Building specific event..."
                     r = randint(1, 101)
                     e = get_event(btable, r)
-                    days.append(btable[e])
+                    days.append(dict(btable[e]))
                     days[-1]['table'] = bfile
                     days[-1]['day'] = i + 1
                     print_row(btable[e])
                 else:
-                    days.append(table[e])
+                    days.append(dict(table[e]))
                     days[-1]['table'] = "generic"
                     days[-1]['day'] = i + 1
                     print_row(table[e])
+            continue
 
-        days.append(table[e])
+        days.append(dict(table[e]))
         days[-1]['table'] = "generic"
         days[-1]['day'] = i + 1
         print_row(table[e])
