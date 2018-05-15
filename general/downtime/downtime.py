@@ -35,6 +35,9 @@ def get_roll_table(filename):
 
 def select_table(dir="tables"):
     tables = os.listdir('tables')
+    for table in tables:
+        if 'generic' in table:
+            tables.remove(table)
     while True:
         print "Select a table:"
         for i in range(len(tables)):
@@ -60,10 +63,12 @@ def print_row(row):
 
 def print_tsv(vals):
     keys = vals[0].keys()
+    keys.extend(['influence bonus', 'capital bonus', 'labor bonus', 'other'])
     print "\t".join(keys)
     for val in vals:
         for key in keys:
-            print val[key], " \t ",
+            if key in val:
+                print val[key], " \t ",
         print
 
 def get_event(table, val):
@@ -96,7 +101,7 @@ def main():
     days = []
     # filename = select_table()
     table = get_roll_table("tables/generic_building_events.txt")
-    print "What building type? (Do not select generic)"
+    print "What building type?"
     bfile = select_table()
     btable = get_roll_table(bfile)
     for i in range(int(num)):
@@ -139,4 +144,9 @@ def main():
         print_row(table[e])
 
     return days
+
+results = main()
+print "*"*20
+print_tsv(results)
+
 
