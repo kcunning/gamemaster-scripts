@@ -49,7 +49,6 @@ def get_potential_class(stats):
     }
 
     top = get_top_three(stats)
-    print "Top:", top
     results = {"exact": [], "partial": []}
     # First, find an exact match.
     for core in cores:
@@ -59,6 +58,20 @@ def get_potential_class(stats):
             elif top[0] == arr[0] and top[1] == arr[1]:
                 results['partial'].append(core)
     return results
+
+def print_results(stats, cldict):
+    print "STR: {STR} DEX: {DEX} CON: {CON}".format(**stats)
+    print "INT: {INT} WIS: {WIS} CHA: {CHA}".format(**stats)
+    print "Classes with exact matches:"
+    if not cldict['exact']:
+        print "\tNone"
+    else:
+        print "\t" + ",".join(cldict['exact'])
+    print "Classes with partial matches:"
+    if not cldict['partial']:
+        print "\tNone"
+    else:
+        print "\t" + ",".join(cldict['partial'])
 
 def main():
     basic_arr = [13, 12, 11, 10, 9, 8]
@@ -72,8 +85,7 @@ def main():
         if results['exact'] or results['partial']:
             break
 
-    print stats
-    print results
+    print_results(stats, results)
 
 if __name__ == '__main__':
     main()
