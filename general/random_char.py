@@ -1,6 +1,8 @@
 from random import shuffle
 
 def get_random_stats(arr):
+    ''' Given a list of numbers (n=6), returns a dictionary of random stats. 
+    '''
     stat_names = ["STR", "DEX", "CON", "INT", "WIS", "CHA"]
     shuffle(arr)
 
@@ -12,6 +14,8 @@ def get_random_stats(arr):
     return stats
 
 def get_top_three(stats):
+    ''' Returns the highest three stats from the stats dict
+    '''
     v = stats.values()
     v.sort()
     v.reverse()
@@ -50,7 +54,6 @@ def get_potential_class(stats):
 
     top = get_top_three(stats)
     results = {"exact": [], "partial": []}
-    # First, find an exact match.
     for core in cores:
         for arr in cores[core]:
             if top == arr:
@@ -60,6 +63,8 @@ def get_potential_class(stats):
     return results
 
 def print_results(stats, cldict):
+    ''' Prints out the stats and potential classes all nice like.
+    '''
     print "STR: {STR} DEX: {DEX} CON: {CON}".format(**stats)
     print "INT: {INT} WIS: {WIS} CHA: {CHA}".format(**stats)
     print "Classes with exact matches:"
@@ -74,9 +79,13 @@ def print_results(stats, cldict):
         print "\t" + ",".join(cldict['partial'])
 
 def main():
+    ''' The meat and potatoes. For now, just sends the basic array.
+    '''
     basic_arr = [13, 12, 11, 10, 9, 8]
     heroic_arr = [15, 14, 13, 12, 10, 8]
 
+    # Keep going until you get a random character with at least
+    # one partial match or one exact match
     while True:
         stats = get_random_stats(basic_arr)
 
