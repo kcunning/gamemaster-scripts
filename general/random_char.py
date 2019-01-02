@@ -43,7 +43,7 @@ def get_potential_class(stats):
         "bard": [['CHA', 'DEX', 'CON']],
         "cleric": [['WIS', 'CHA', 'STR'], ['WIS', 'CHA', 'DEX']],
         "druid": [['WIS', 'DEX', 'CON']],
-        "fighter": [['STR', 'CON', 'DEX']],
+        "fighter": [['STR', 'CON', 'DEX'], ['STR', 'DEX', 'CON']],
         "monk": [['STR', 'WIS', 'CON']],
         "paladin": [['STR', 'CHA', 'CON']],
         "ranger": [['DEX', 'WIS', 'INT'], ['STR', 'WIS', 'INT']],
@@ -62,11 +62,31 @@ def get_potential_class(stats):
         "oracle": [['CHA', 'STR', 'CON']],
         "summoner": [['CHA', 'DEX', 'CON']],
         "witch": [['INT', 'DEX', 'CON']],
+        "archanist": [['INT', 'CHA', 'DEX']],
+        "bloodranger": [['STR', 'CON', 'CHA']],
+        "brawler": [['STR', 'CON', 'DEX']],
+        "hunter": [['WIS', 'DEX', 'CON']],
+        "investigator": [['STR', 'INT', 'DEX']],
+        "shaman": [['WIS', 'CHA', 'CON']],
+        "skald": [['STR', 'CHA', 'CON']],
+        "swashbuckler": [['DEX', 'CHA', 'CON']],
+        "warpriest": [['STR', 'WIS', 'CON']],
+        "vigilante": [["CHA", "DEX", "CON"]]
+    }
+
+    occults = {
+        "kineticist": [["CON", "DEX", "WIS"]],
+        "medium": [["CHA", "DEX", "CON"]],
+        "mesmerist": [["CHA", "DEX", "CON"]],
+        "occultist": [["INT", "STR", "DEX"]],
+        "psychic": [["INT", "WIS", "DEX"], ["INT", "CHA", "DEX"]],
+        "spiritualist": [["WIS", "DEX", "CON"]],
     }
 
     all_classes = {}
     all_classes.update(cores)
     all_classes.update(advs)
+    all_classes.update(occults)
 
     top = get_top_three(stats)
     results = {"exact": [], "partial": []}
@@ -77,7 +97,8 @@ def get_potential_class(stats):
             elif top[0] == arr[0] and top[1] == arr[1]:
                 results['partial'].append(core)
             elif top == [arr[0], arr[2], arr[1]]:
-                results['partial'].append(core)
+                if not core in results['partial'] and not core in results['exact']:
+                    results['partial'].append(core)
     return results
 
 def print_results(stats, cldict):
