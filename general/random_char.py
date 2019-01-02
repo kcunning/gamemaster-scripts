@@ -60,6 +60,8 @@ def get_potential_class(stats):
                 results['exact'].append(core)
             elif top[0] == arr[0] and top[1] == arr[1]:
                 results['partial'].append(core)
+            elif top == [arr[0], arr[2], arr[1]]:
+                results['partial'].append(core)
     return results
 
 def print_results(stats, cldict):
@@ -71,12 +73,12 @@ def print_results(stats, cldict):
     if not cldict['exact']:
         print "\tNone"
     else:
-        print "\t" + ",".join(cldict['exact'])
+        print "\t" + ", ".join(cldict['exact'])
     print "Classes with partial matches:"
     if not cldict['partial']:
         print "\tNone"
     else:
-        print "\t" + ",".join(cldict['partial'])
+        print "\t" + ", ".join(cldict['partial'])
 
 def main():
     ''' The meat and potatoes. For now, just sends the basic array.
