@@ -52,10 +52,26 @@ def get_potential_class(stats):
         "wizard": [['INT', 'DEX', 'CON']]
     }
 
+    advs = {
+        "alchemist": [['INT', 'DEX', 'CON']],
+        "cavalier": [['STR', 'CON', 'DEX']],
+        "samurai": [['STR', 'CON', 'DEX']],
+        "gunslinger": [['DEX', 'WIS', 'CON']],
+        "inquisitor": [['DEX', 'WIS', 'CON']],
+        "magus": [['STR', 'INT', 'CON']],
+        "oracle": [['CHA', 'STR', 'CON']],
+        "summoner": [['CHA', 'DEX', 'CON']],
+        "witch": [['INT', 'DEX', 'CON']],
+    }
+
+    all_classes = {}
+    all_classes.update(cores)
+    all_classes.update(advs)
+
     top = get_top_three(stats)
     results = {"exact": [], "partial": []}
-    for core in cores:
-        for arr in cores[core]:
+    for core in all_classes:
+        for arr in all_classes[core]:
             if top == arr:
                 results['exact'].append(core)
             elif top[0] == arr[0] and top[1] == arr[1]:
