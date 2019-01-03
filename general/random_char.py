@@ -90,15 +90,15 @@ def get_potential_class(stats):
 
     top = get_top_three(stats)
     results = {"exact": [], "partial": []}
-    for core in all_classes:
-        for arr in all_classes[core]:
+    for name in all_classes:
+        for arr in all_classes[name]:
             if top == arr:
-                results['exact'].append(core)
+                results['exact'].append(name)
             elif top[0] == arr[0] and top[1] == arr[1]:
-                results['partial'].append(core)
+                results['partial'].append(name)
             elif top == [arr[0], arr[2], arr[1]]:
-                if not core in results['partial'] and not core in results['exact']:
-                    results['partial'].append(core)
+                if not name in results['partial'] and not name in results['exact']:
+                    results['partial'].append(name)
     return results
 
 def print_results(stats, cldict):
