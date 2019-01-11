@@ -59,9 +59,13 @@ class Resident:
 
     def __init__(self, vals={}):
 
+        print "Creating resident with", vals
+
         self.ses = self.get_ses_type()
         self.age = self.get_age_type()
         self.first_name, self.family_name = self.get_name()
+        self.parents = [] # If a child is generated this way, they're an orphan
+        self.spouse = None
 
         # Overwrite any vals we sent in after wasting precious electrons
         for val in vals:
@@ -73,7 +77,7 @@ class Resident:
             self.job = self.get_job()
         else:
             self.job = "none"
-            self.parents = [] # If a child is generated this way, they're an orphan
+        
 
     def __str__(self):
         return self.first_name + " " + self.family_name
