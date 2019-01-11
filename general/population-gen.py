@@ -87,9 +87,35 @@ class Resident:
 
 class Building:
     ''' A building, described generically, so that we don't have to worry
-        about ses. Assumes someone older than an adult lives within
+        about ses. Assumes someone older than an adult lives within.
+
+        The first adult placed determines the SES of the house.
+
+        Because this is a medieval style place, families can live in places
+        of business.
     '''
-    pass
+    def get_random_group(self, names, chances):
+        n = int(random() * 100)
+        t = 0
+        for i in range(len(chances)):
+            t += chances[i]
+            if n <= t:
+                return names[i]
+        return names[-1]
+
+    def get_building_type(self, vals):
+        btypes = ['residence', 'merchant', 'artisan', 'temple']
+        chances = [50, 20, 20]
+
+        if 'type' in vals and vals['type'] in btypes:
+            return vals['type']
+
+        return self.get_random_group(btypes, chances)
+
+    def __init__(self, vals={}):
+
+        self.type = self.get_building_type(vals)
+        self.residents = []
 
 
 class Town:
@@ -109,7 +135,10 @@ class Town:
         print "\tDo they have a spouse?"
         c = self.get_random_group([True, False], [50])
         if c:
-            d = {'age': r.age, 'ses': r.ses, 'family_name': r.family_name}
+            d = {'age': r.age, 
+                'ses': r.ses, 
+                'family_name': r.family_name,
+                'job': r.job}  # For now, assume they have the same job
             spouse = Resident(d)
             fam.append(spouse)
             print "\tSpouse is", spouse
@@ -119,6 +148,10 @@ class Town:
         else:
             print "\tNo spouse"
             parents = [r]
+
+        # Make them a house
+        b = Building({'type': r.job})
+
         # How many children?
         options = [0, 1, 2, 3]
         chances = [60, 30, 15]
@@ -140,6 +173,10 @@ class Town:
             r = Resident(d)
             print "\tCreated", r
             fam.append(r)
+        
+        b.residents = fam
+
+        self.buildings.append(b)
 
         return fam
 
@@ -158,6 +195,7 @@ class Town:
                 * Eventually put families in houses
         '''
         self.residents = []
+        self.buildings = []
 
         while len(self.residents) < n:
             r = Resident()
@@ -165,13 +203,6 @@ class Town:
             if r.age == 'adult':
                 fam = self.generate_family(r, 'child')
                 self.residents.extend(fam)
-            if r.age == 'elderly':
-                # We need to generate a family for the adult children
-                fam = self.generate_family(r, 'adult')
-                for f in fam:
-                    fam.extend(self.generate_family(f, 'child'))
-                self.residents.extend(fam)
-
 
 def generate_people(n=1000):
     ''' Just a test function for seeing how a town of 1000 people
