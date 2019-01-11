@@ -9,7 +9,7 @@ class Resident:
         t = 0
         for i in range(len(chances)):
             t += chances[i]
-            if n <= chances[i]:
+            if n <= t:
                 return names[i]
         return names[-1]
 
@@ -22,8 +22,11 @@ class Resident:
     def get_age_type(self):
         # For this, we're assuming that a child is someone too young to work,
         # so the percentage is fairly low.
+
+        # Most children will be generated with a family, so there's only a small
+        # chance for a child to be generated on their own
         age_types = ['elderly', 'adult', 'child']
-        chances = [20, 65]
+        chances = [20, 78]
 
         return self.get_random_group(age_types, chances)
 
@@ -60,12 +63,41 @@ class Resident:
         self.age = self.get_age_type()
         self.first_name, self.family_name = self.get_name()
 
+        # Overwrite any vals we sent in after wasting precious electrons
+        for val in vals:
+            setattr(self, val, vals[val])
+
         # Assume a child has no job. I'm using a more medieval use of the term
         # 'child' rather than a modern use. 
-        if self.age != 'child':
+        if self.age != 'child' and not hasattr(self, 'job'):
             self.job = self.get_job()
         else:
             self.job = "none"
+
+def get_random_group(names, chances):
+    n = int(random() * 100)
+    t = 0
+    for i in range(len(chances)):
+        t += chances[i]
+        if n <= t:
+            return names[i]
+    return names[-1]
+
+def generate_family(r, t):
+    # How many?
+    options = [0, 1, 2, 3]
+    chances = [40, 30, 20]
+    n = get_random_group(options, chances)
+    
+    if n == 0:
+        return []
+
+    fam = []
+    for i in range(n):
+        r = Resident({'age': t, 'family_name':r.family_name, 'ses': r.ses})
+        fam.append(r)
+
+    return fam
 
 
 def generate_town(n=1000):
@@ -75,9 +107,19 @@ def generate_town(n=1000):
         children. If so, we go ahead and create that child.
     '''
     residents = []
+
     while len(residents) < n:
         r = Resident()
         residents.append(r)
+        if r.age == 'adult':
+            fam = generate_family(r, 'child')
+            residents.extend(fam)
+        if r.age == 'elderly':
+            # We need to generate a family for the adult children
+            pass
+
+
+    return residents
 
 
 def generate_people(n=1000):
