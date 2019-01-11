@@ -33,11 +33,11 @@ class Resident:
         '''
         f = ''
         for i in range(3):
-            f += choice(string.lowercase)
+            f += choice(lowercase)
 
         s = ''
         for i in range(4):
-            s += choice(string.lowercase)
+            s += choice(lowercase)
 
         return f, s
 
@@ -56,25 +56,39 @@ class Resident:
 
     def __init__(self, vals={}):
 
-        if not vals:
-            self.ses = self.get_ses_type()
-            self.age = self.get_age_type()
-            self.first_name, self.family_name = self.get_name()
+        self.ses = self.get_ses_type()
+        self.age = self.get_age_type()
+        self.first_name, self.family_name = self.get_name()
 
-            # Assume a child has no job. I'm using a more medieval use of the term
-            # 'child' rather than a modern use. 
-            if self.age != 'child':
-                self.job = self.get_job()
-            else:
-                self.job = "none"
+        # Assume a child has no job. I'm using a more medieval use of the term
+        # 'child' rather than a modern use. 
+        if self.age != 'child':
+            self.job = self.get_job()
+        else:
+            self.job = "none"
+
+
+def generate_town(n=1000):
+    ''' Generate a town of people! 
+
+        For each resident, we check to see if that resident has any
+        children. If so, we go ahead and create that child.
+    '''
+    residents = []
+    while len(residents) < n:
+        r = Resident()
+        residents.append(r)
 
 
 def generate_people(n=1000):
+    ''' Just a test function for seeing how a town of 1000 people
+        shakes out
+    '''
     job = {}
     age = {}
     ses = {}
 
-    for i in range(1000):
+    for i in range(n):
         r = Resident()
         fields = ['job', 'age', 'ses']
 
