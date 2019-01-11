@@ -24,7 +24,8 @@ class Resident:
         # so the percentage is fairly low.
 
         # Most children will be generated with a family, so there's only a small
-        # chance for a child to be generated on their own
+        # chance for a child to be generated on their own. A child generated this
+        # way is an orphan
         age_types = ['elderly', 'adult', 'child']
         chances = [20, 78]
 
