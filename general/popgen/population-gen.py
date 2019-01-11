@@ -43,8 +43,9 @@ class Resident:
 
 
     def get_name(self):
-        ''' One day, this will get a cool name. For now, everyone gets
-            a few random letters
+        ''' Make a name. Names from:
+
+            https://www.mithrilandmages.com/utilities/MedievalBrowse.php?letter=C&fms=M
         '''
         # Should probably move this to be more efficient, but w/e
         first_names = self.get_lines('female_names.txt')
