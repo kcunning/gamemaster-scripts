@@ -30,19 +30,28 @@ class Resident:
 
         return self.get_random_group(age_types, chances)
 
+    def get_lines(self, fname):
+        with open(fname) as f:
+            lines = f.readlines()
+
+        data = []
+        for line in lines:
+            t = line.strip()
+            if t: data.append(t)
+
+        return data
+
+
     def get_name(self):
         ''' One day, this will get a cool name. For now, everyone gets
             a few random letters
         '''
-        f = ''
-        for i in range(3):
-            f += choice(lowercase)
+        # Should probably move this to be more efficient, but w/e
+        first_names = self.get_lines('female_names.txt')
+        first_names.extend(self.get_lines('male_names.txt'))
+        surnames = self.get_lines('surnames.txt')
 
-        s = ''
-        for i in range(4):
-            s += choice(lowercase)
-
-        return f, s
+        return choice(first_names), choice(surnames)
 
     def get_job(self):
         ses_jobs = {
