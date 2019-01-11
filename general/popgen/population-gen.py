@@ -48,10 +48,13 @@ class Resident:
 
             https://www.mithrilandmages.com/utilities/MedievalBrowse.php?letter=C&fms=M
         '''
-        # Should probably move this to be more efficient, but w/e
-        first_names = self.get_lines('female_names.txt')
-        first_names.extend(self.get_lines('male_names.txt'))
-        surnames = self.get_lines('surnames.txt')
+        # DO NOT DO AS I DO, CHILDREN. GLOBALS ARE BAD.
+        # Global brought in so that we only get the first names and such once.
+        if not 'first_names' in globals():
+            global first_names, surnames
+            first_names = self.get_lines('female_names.txt')
+            first_names.extend(self.get_lines('male_names.txt'))
+            surnames = self.get_lines('surnames.txt')
 
         return choice(first_names), choice(surnames)
 
@@ -190,6 +193,24 @@ class Town:
         self.buildings.append(b)
 
         return fam
+
+    def print_town_stats(self):
+        print "Number of residents:", len(self.residents)
+        print "Number of buildings:", len(self.buildings)
+
+        ses = {}
+        age = {}
+        fields = ['ses', 'age']
+        for r in self.residents:
+            for field in fields:
+                if not getattr(r, field) in locals()[field]:
+                    locals()[field][getattr(r, field)] = 1
+                else:
+                    locals()[field][getattr(r, field)] += 1
+
+        print "SES", ses
+        print "AGE", age
+
 
     def __init__(self, n=1000):
         ''' Generate a town of people! 
