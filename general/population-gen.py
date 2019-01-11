@@ -73,12 +73,19 @@ class Resident:
             self.job = self.get_job()
         else:
             self.job = "none"
+            self.parents = [] # If a child is generated this way, they're an orphan
 
     def __str__(self):
         return self.first_name + " " + self.family_name
 
     def __repr__(self):
         return self.first_name + " " + self.family_name
+
+class Building:
+    ''' A building, described generically, so that we don't have to worry
+        about ses. Assumes someone older than an adult lives within
+    '''
+    pass
 
 
 class Town:
@@ -93,7 +100,22 @@ class Town:
 
     def generate_family(self, r, t):
         print "Making a family for", r
-        # How many?
+        fam = []
+
+        print "\tDo they have a spouse?"
+        c = self.get_random_group([True, False], [50])
+        if c:
+            d = {'age': r.age, 'ses': r.ses, 'family_name': r.family_name}
+            spouse = Resident(d)
+            fam.append(spouse)
+            print "\tSpouse is", spouse
+            r.spouse = spouse
+            spouse.spouse = r
+            parents = [r, spouse]
+        else:
+            print "\tNo spouse"
+            parents = [r]
+        # How many children?
         options = [0, 1, 2, 3]
         chances = [60, 30, 15]
         n = self.get_random_group(options, chances)
@@ -103,13 +125,13 @@ class Town:
         if n == 0:
             return []
 
-        fam = []
         for i in range(n):
             d = {'age': t}
             # Assume the child has the same ses and family name as the parent
             if t == 'child':
                 d['ses'] = r.ses
                 d['family_name'] = r.family_name
+                d['parents'] = parents
 
             r = Resident(d)
             print "\tCreated", r
@@ -141,64 +163,10 @@ class Town:
                 self.residents.extend(fam)
             if r.age == 'elderly':
                 # We need to generate a family for the adult children
-                fam = generate_family(r, 'adult')
+                fam = self.generate_family(r, 'adult')
                 for f in fam:
-                    fam.extend(generate_family(f, 'child'))
+                    fam.extend(self.generate_family(f, 'child'))
                 self.residents.extend(fam)
-
-
-def get_random_group(names, chances):
-    n = int(random() * 100)
-    t = 0
-    for i in range(len(chances)):
-        t += chances[i]
-        if n <= t:
-            return names[i]
-    return names[-1]
-
-def generate_family(r, t):
-    # How many?
-    options = [0, 1, 2, 3]
-    chances = [40, 30, 20]
-    n = get_random_group(options, chances)
-    
-    if n == 0:
-        return []
-
-    fam = []
-    for i in range(n):
-        r = Resident({'age': t, 'family_name':r.family_name, 'ses': r.ses})
-        fam.append(r)
-
-    return fam
-
-
-def generate_town(n=1000):
-    ''' Generate a town of people! 
-
-        For each resident, we check to see if that resident has any
-        children. If so, we go ahead and create that child.
-
-        TODO:
-            * Add a spouse
-            * Add 'parent of' and 'child of' to Resident
-            * Eventually put families in houses
-    '''
-    residents = []
-
-    while len(residents) < n:
-        r = Resident()
-        residents.append(r)
-        if r.age == 'adult':
-            fam = generate_family(r, 'child')
-            residents.extend(fam)
-        if r.age == 'elderly':
-            # We need to generate a family for the adult children
-            fam = generate_family(r, 'adult')
-            for f in fam:
-                fam.extend(generate_family(f, 'child'))
-
-    return residents
 
 
 def generate_people(n=1000):
