@@ -56,11 +56,11 @@ class Resident:
 
     def get_job(self):
         ses_jobs = {
-            'rich': ['none'],
-            'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service'],
-            'comfortable': ['shopkeep', 'artisan', 'trader', 'service', 'guard'],
-            'struggling': ['worker', 'field hand', 'guard', 'service'],
-            'poor': ['worker', 'field hand', 'beggar', 'service']
+            'rich': ['noblilty', 'land owner'],
+            'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service', 'temple'],
+            'comfortable': ['shopkeep', 'artisan', 'trader', 'service', 'guard', 'temple'],
+            'struggling': ['worker', 'field hand', 'guard', 'service', 'temple'],
+            'poor': ['worker', 'field hand', 'beggar', 'service', 'temple']
         }
 
         return choice(ses_jobs[self.ses])
