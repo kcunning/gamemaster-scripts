@@ -61,10 +61,10 @@ class Resident:
     def get_job(self):
         ses_jobs = {
             'rich': ['noblilty', 'land owner'],
-            'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service', 'temple'],
+            'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service'],
             'comfortable': ['shopkeep', 'artisan', 'trader', 'service', 'guard', 'temple'],
-            'struggling': ['worker', 'field hand', 'guard', 'service', 'temple'],
-            'poor': ['worker', 'field hand', 'beggar', 'service', 'temple']
+            'struggling': ['worker', 'field hand', 'guard', 'service'],
+            'poor': ['worker', 'field hand', 'beggar', 'service']
         }
 
         return choice(ses_jobs[self.ses])
@@ -146,7 +146,7 @@ class Town:
     def generate_family(self, r, t):
         fam = []
         # Spouse?
-        c = self.get_random_group([True, False], [50])
+        c = self.get_random_group([True, False], [70])
         if c:
             d = {'age': r.age, 
                 'ses': r.ses, 
@@ -161,13 +161,16 @@ class Town:
         else:
             parents = [r]
 
+        if r.age == "elderly":
+            return fam
+
         # How many children?
-        options = [0, 1, 2, 3]
-        chances = [60, 30, 15]
+        options = [0, 1, 2, 3, 4, 5]
+        chances = [20, 30, 15, 10, 10]
         n = self.get_random_group(options, chances)
         
         if n == 0:
-            return []
+            return fam
 
         for i in range(n):
             d = {'age': t}
@@ -244,7 +247,9 @@ class Town:
                 b = Building({'type': r.job})
                 b.residents = [r] + fam
                 self.buildings.append(b)
-            elif r.age == 'eldery':
+            elif r.age == 'elderly':
+                fam = self.generate_family(r, "none")
+                self.residents.extend(fam)
                 b = Building({'type': r.job})
                 b.residents = [r]
                 self.buildings.append(b)
