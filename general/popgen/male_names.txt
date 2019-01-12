@@ -63,7 +63,7 @@ Adelulf
 Adenot
 Aderlard
 Adestan
-Adhémar
+Adhemar
 Adlard
 Admago
 Admetos
@@ -364,7 +364,7 @@ Ambure
 Ame
 Ameinias
 Ameinokles
-Amélien
+Amelien
 Amer
 Americ
 Americus
@@ -827,7 +827,7 @@ Automedon
 Autonous
 Auveray
 Auvere
-Auveré
+Auvere
 Auvrai
 Auxitius
 Auxkin
@@ -856,7 +856,7 @@ Aymon
 Ayol
 Azeari
 Azelinus
-Azémar
+Azemar
 Azer
 Azeus
 Azibar
@@ -922,7 +922,7 @@ Barnier
 Baro
 Barret
 Barrett
-Barthélemy
+Barthelemy
 Bartholomeus
 Bartram
 Bartrem
@@ -983,12 +983,12 @@ Benedictus
 Benedicus
 Beneger
 Beneoit
-Benéoit
+Beneoit
 Beneoite
 Benet
 Benett
 Beneyt
-Bénezet
+Benezet
 Benger
 Benild
 Benkamin
@@ -1014,7 +1014,7 @@ Berengerus
 Berengier
 Berhdoldus
 Berhtolf
-Béri
+Beri
 Berico
 Berig
 Berimud
@@ -1402,7 +1402,7 @@ Cozard
 Crathis
 Cratinus
 Cratippus
-Crépin
+Crepin
 Crescentius
 Cresconius
 Cressant

@@ -1,6 +1,6 @@
 Aafte
-Aalès
-Aalèz
+Aales
+Aalez
 Aalfte
 Aalina
 Aaline
@@ -20,8 +20,8 @@ Acelina
 Achaia
 Achethe
 Achradina
-Actaëe
-Actë
+Actaee
+Acte
 Ada
 Adala
 Adalberta
@@ -65,7 +65,7 @@ Adeltrudis
 Adelysia
 Adeodata
 Adere
-Adète
+Adete
 Adhela
 Adhelina
 Adila
@@ -126,7 +126,7 @@ Agas
 Agase
 Agate
 Agatha
-Agathé
+Agathe
 Agathonice
 Agave
 Agentrudis
@@ -458,7 +458,7 @@ Andrezuria
 Andrie
 Andromeda
 Ane
-Anès
+Anes
 Anese
 Anesot
 Anestasia
@@ -639,7 +639,7 @@ Astyoche
 Astyocheia
 Atalanta
 Atallo
-Atë
+Ate
 Athala
 Athanasia
 Athela
@@ -660,7 +660,7 @@ Atsegie
 Atxarte
 Aua
 Auacyn
-Auberée
+Auberee
 Aubirge
 Aubourc
 Aubreda
@@ -814,7 +814,7 @@ Beatricia
 Beatricie
 Beatricis
 Beatrix
-Béatriz
+Beatriz
 Beattie
 Beatty
 Beautrice
@@ -849,7 +849,7 @@ Berehta
 Berenda
 Berenga
 Berengaria
-Bérengère
+Berengere
 Berenike
 Berezi
 Bergard
@@ -893,10 +893,10 @@ Bibie
 Bidane
 Biddy
 Biedeluue
-Biétris
-Biétrix
-Biétriz
-Biétron
+Bietris
+Bietrix
+Bietriz
+Bietron
 Bihotz
 Bikarregi
 Bilda
@@ -1019,7 +1019,7 @@ Childebertana
 Chione
 Chiore
 Chloe
-Chloë
+Chloe
 Chloris
 Chlotichhilda
 Chlotsuintha
@@ -1084,7 +1084,7 @@ Colecta
 Coleite
 Colet
 Coleta
-Colète
+Colete
 Colett
 Coletta
 Colina

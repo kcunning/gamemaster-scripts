@@ -72,9 +72,6 @@ class Resident:
 
 
     def __init__(self, vals={}):
-
-        print "Creating resident with", vals
-
         self.ses = self.get_ses_type()
         self.age = self.get_age_type()
         self.first_name, self.family_name = self.get_name()
@@ -94,10 +91,12 @@ class Resident:
         
 
     def __str__(self):
-        return self.first_name + " " + self.family_name
+        return "{fn} {ln} ({age}) - {job}".format(fn=self.first_name, 
+            ln=self.family_name, age=self.age, job=self.job)
 
     def __repr__(self):
-        return self.first_name + " " + self.family_name
+        return "{fn} {ln} ({age}) - {job}".format(fn=self.first_name, 
+            ln=self.family_name, age=self.age, job=self.job)
 
 class Building:
     ''' A building, described generically, so that we don't have to worry
@@ -118,11 +117,13 @@ class Building:
         return names[-1]
 
     def get_building_type(self, vals):
-        btypes = ['residence', 'merchant', 'artisan', 'temple']
-        chances = [50, 20, 20]
+        btypes = ['residence', 'merchant', 'artisan', 'temple', 'shopkeep']
+        chances = [50, 20, 20, 5]
 
-        if 'type' in vals and vals['type'] in btypes:
+        if 'type' in vals and vals['type'] in btypes + ['none']:
             return vals['type']
+        if 'type' in vals:
+            return 'residence'
 
         return self.get_random_group(btypes, chances)
 
@@ -143,10 +144,8 @@ class Town:
         return names[-1]
 
     def generate_family(self, r, t):
-        print "Making a family for", r
         fam = []
-
-        print "\tDo they have a spouse?"
+        # Spouse?
         c = self.get_random_group([True, False], [50])
         if c:
             d = {'age': r.age, 
@@ -154,24 +153,18 @@ class Town:
                 'family_name': r.family_name,
                 'job': r.job}  # For now, assume they have the same job
             spouse = Resident(d)
+            spouse.job = r.job
             fam.append(spouse)
-            print "\tSpouse is", spouse
             r.spouse = spouse
             spouse.spouse = r
             parents = [r, spouse]
         else:
-            print "\tNo spouse"
             parents = [r]
-
-        # Make them a house
-        b = Building({'type': r.job})
 
         # How many children?
         options = [0, 1, 2, 3]
         chances = [60, 30, 15]
         n = self.get_random_group(options, chances)
-
-        print "\tMaking", n, "members."
         
         if n == 0:
             return []
@@ -185,12 +178,7 @@ class Town:
                 d['parents'] = parents
 
             r = Resident(d)
-            print "\tCreated", r
             fam.append(r)
-        
-        b.residents = fam
-
-        self.buildings.append(b)
 
         return fam
 
@@ -200,6 +188,7 @@ class Town:
 
         ses = {}
         age = {}
+        btypes = {}
         fields = ['ses', 'age']
         for r in self.residents:
             for field in fields:
@@ -208,8 +197,25 @@ class Town:
                 else:
                     locals()[field][getattr(r, field)] += 1
 
+        for b in self.buildings:
+            if not b.type in btypes:
+                btypes[b.type] = 1
+            else:
+                btypes[b.type] += 1
+
         print "SES", ses
         print "AGE", age
+        print "Building types", btypes
+
+    def sort_buildings(self):
+        self.sectors = {}
+
+        for b in self.buildings:
+            r = b.residents[0]
+            if not r.ses in self.sectors:
+                self.sectors[r.ses] = [b]
+            else:
+                self.sectors[r.ses].append(b)
 
 
     def __init__(self, n=1000):
@@ -235,6 +241,20 @@ class Town:
             if r.age == 'adult':
                 fam = self.generate_family(r, 'child')
                 self.residents.extend(fam)
+                b = Building({'type': r.job})
+                b.residents = [r] + fam
+                self.buildings.append(b)
+            elif r.age == 'eldery':
+                b = Building({'type': r.job})
+                b.residents = [r]
+                self.buildings.append(b)
+            elif r.age == 'child':
+                b = Building({'type': 'none'})
+                b.residents = [r]
+                self.buildings.append(b)
+
+        self.sort_buildings()
+
 
 def generate_people(n=1000):
     ''' Just a test function for seeing how a town of 1000 people
@@ -255,4 +275,7 @@ def generate_people(n=1000):
                 locals()[field][getattr(r, field)] += 1
 
     return job, age, ses
+
+t = Town()
+t.print_town_stats()
 
