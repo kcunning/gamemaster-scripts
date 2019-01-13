@@ -1,9 +1,40 @@
 from random import choice, random
 from string import lowercase
 
+# To do:
+# Class for shops
+# Docs!
+
 class Resident:
+    ''' A resident is a single person within a town.
+
+        Each resident has an age, a socioeconomic status(SES), a name
+        and a job. Optionally, they can have a spouse and parents.
+
+        Children are assumed to have no job. Note that 'children' in this case
+        are simply 'people too young to work.' Also, a child randomly generated
+        by this class is assumed to be an orpha, since family units are generated
+        via the Town class.
+
+        Values can be sent into the init. Any values sent in will overwrite the 
+        randomly generated values.
+    '''
 
     def get_random_group(self, names, chances):
+        ''' Given a list of options and the chance for each, return one of the
+            named groups. The index of each named group matches the index of the chance
+            of it being picked.
+
+            The length of `chances` should be one less than `names`. 
+
+            Example: If you send in the named groups `["one", "two", "three"] and the
+            chances `[40, 20]`, the chances of getting "one" is 40% and "two" is 20%.
+            Since 100 - 40 - 20 is 40, the chances of getting "three" is 40%.
+
+            The reason the chances are expicitly stated for the last item in `names`
+            is just to make fiddling with numbers easier. It was a pain to keep having
+            to make sure they all added up to 100.
+        '''
         n = int(random() * 100)
 
         t = 0
@@ -14,30 +45,42 @@ class Resident:
         return names[-1]
 
     def get_ses_type(self):
+        ''' Returns a random socioeconomic status.
+        '''
         names = ['rich', 'affluent', 'comfortable', 'struggling', 'poor']
         chances = [1, 10, 20, 40]
 
         return self.get_random_group(names, chances)
 
     def get_age_type(self):
-        # For this, we're assuming that a child is someone too young to work,
-        # so the percentage is fairly low.
+        ''' Returns a random age type. Note that this doens't spell out an
+            explicit age. This is to give the GM more freedom in describing
+            characters.
 
-        # Most children will be generated with a family, so there's only a small
-        # chance for a child to be generated on their own. A child generated this
-        # way is an orphan
+            For this, we're assuming that a child is someone too young to work,
+            so the percentage is fairly low.
+
+            Most children will be generated with a family, so there's only a small
+            chance for a child to be generated on their own. A child generated this
+            way is an orphan
+        '''
+        
         age_types = ['elderly', 'adult', 'child']
         chances = [20, 78]
 
         return self.get_random_group(age_types, chances)
 
     def get_lines(self, fname):
+        ''' Gets lines from a file, cleans them up, and returns them.
+        '''
         with open(fname) as f:
             lines = f.readlines()
 
         data = []
         for line in lines:
             t = line.strip()
+            # I don't values with unicode characters right now.
+            if t != str(t): continue 
             if t: data.append(t)
 
         return data
@@ -59,6 +102,18 @@ class Resident:
         return choice(first_names), choice(surnames)
 
     def get_job(self):
+        ''' Returns a job based on `Resident.ses`. Requires SES being set.
+
+            Note that some jobs occur in more than one category. Presumably,
+            the Residents with a higher SES have better positions, such as the head
+            of the guard or a successful merchant.
+
+            "Service" is generally someone who doesn't create or offer a good. They
+            might be a servant, a money counter, or some other job that fits that SES.
+
+            "Worker" is generally someone who helps a producer / seller, but doesn't own
+            their own business or make their own goods.
+        '''
         ses_jobs = {
             'rich': ['noblilty', 'land owner'],
             'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service'],
@@ -72,6 +127,14 @@ class Resident:
 
 
     def __init__(self, vals={}):
+        ''' Initializes a single Resident. 
+
+            Values can be passed in that overwrite randomly generated values.
+
+            Children are not given jobs. In this script, it is assumed that a
+            child is simply someone too young to work. They may help out the 
+            family business, but they don't have a 'job'.
+        '''
         self.ses = self.get_ses_type()
         self.age = self.get_age_type()
         self.first_name, self.family_name = self.get_name()
@@ -91,10 +154,14 @@ class Resident:
         
 
     def __str__(self):
+        ''' Returns name of the Resident, along with their age and job.
+        '''
         return "{fn} {ln} ({age}) - {job}".format(fn=self.first_name, 
             ln=self.family_name, age=self.age, job=self.job)
 
     def __repr__(self):
+        ''' Returns name of the Resident, along with their age and job.
+        '''
         return "{fn} {ln} ({age}) - {job}".format(fn=self.first_name, 
             ln=self.family_name, age=self.age, job=self.job)
 
@@ -283,4 +350,7 @@ def generate_people(n=1000):
 
 t = Town()
 t.print_town_stats()
+
+for r in t.residents:
+    print r, r.age, r.job, r.ses
 
