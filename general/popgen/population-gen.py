@@ -174,7 +174,22 @@ class Building:
         Because this is a medieval style place, families can live in places
         of business.
     '''
+
     def get_random_group(self, names, chances):
+        ''' Given a list of options and the chance for each, return one of the
+            named groups. The index of each named group matches the index of the chance
+            of it being picked.
+
+            The length of `chances` should be one less than `names`. 
+
+            Example: If you send in the named groups `["one", "two", "three"] and the
+            chances `[40, 20]`, the chances of getting "one" is 40% and "two" is 20%.
+            Since 100 - 40 - 20 is 40, the chances of getting "three" is 40%.
+
+            The reason the chances are expicitly stated for the last item in `names`
+            is just to make fiddling with numbers easier. It was a pain to keep having
+            to make sure they all added up to 100.
+        '''
         n = int(random() * 100)
         t = 0
         for i in range(len(chances)):
@@ -184,6 +199,19 @@ class Building:
         return names[-1]
 
     def get_building_type(self, vals):
+        ''' Returns a building type. 
+
+            If the value sent in vals['type'] is none, or is contained in the
+            possible types of buildings, that value is sent back. This is so
+            certain people will live in a building that makes sense (a temple worker
+            in a temple, a merchant in a merchant house, etc).
+
+            If a value is sent in vals, but it doesn't match the building types (or none),
+            "residence" is sent back. This is for people who wouldn't live at their
+            place of work.
+
+            Finally, if nothing is sent in vals, a random building is sent back.
+        '''
         btypes = ['residence', 'merchant', 'artisan', 'temple', 'shopkeep']
         chances = [50, 20, 20, 5]
 
@@ -195,7 +223,10 @@ class Building:
         return self.get_random_group(btypes, chances)
 
     def __init__(self, vals={}):
-
+        ''' Creates a building. If nothing is sent in vals, it will be a random
+            empty building. Residents are set in the Town class during population
+            generation.
+        '''
         self.type = self.get_building_type(vals)
         self.residents = []
 
