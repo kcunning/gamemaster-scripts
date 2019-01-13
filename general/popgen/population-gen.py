@@ -318,6 +318,22 @@ class Town:
             else:
                 self.sectors[r.ses].append(b)
 
+    def print_town_csv(self, delimeter="\t"):
+        hc = ["Name", "Age","Building","SES", "Job"]
+        hr = delimeter.join(hc)
+        print hr
+
+        rc = ["{name}", "{age}", "{building}", "{ses}", "{job}"]
+        rt = delimeter.join(rc)
+
+        for b in self.buildings:
+            for r in b.residents:
+                print rt.format(
+                    name=r.first_name + " " + r.family_name,
+                    age=r.age,
+                    building=b.type,
+                    ses=r.ses,
+                    job=r.job)
 
     def __init__(self, n=1000):
         ''' Generate a town of people! 
@@ -382,6 +398,5 @@ def generate_people(n=1000):
 t = Town()
 t.print_town_stats()
 
-for r in t.residents:
-    print r, r.age, r.job, r.ses
+t.print_town_csv()
 
