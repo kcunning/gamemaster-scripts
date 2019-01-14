@@ -93,8 +93,8 @@ class Resident:
         '''
         # DO NOT DO AS I DO, CHILDREN. GLOBALS ARE BAD.
         # Global brought in so that we only get the first names and such once.
-        if not 'first_names' in globals():
-            global first_names, surnames
+        if not 'first_names_f' in globals():
+            global first_names_f, first_names_m, surnames
             first_names_f = self.get_lines('female_names.txt')
             first_names_m = self.get_lines('male_names.txt')
             surnames = self.get_lines('surnames.txt')
@@ -140,7 +140,7 @@ class Resident:
         '''
         self.ses = self.get_ses_type()
         self.age = self.get_age_type()
-        self.gender = self.get_random_group(['male', 'female'], [50])
+        self.gender = self.get_random_group(['male', 'female', 'indeterminate'], [49, 49])
         self.first_name, self.family_name = self.get_name()
         self.parents = [] # If a child is generated this way, they're an orphan
         self.spouse = None
@@ -255,6 +255,8 @@ class Town:
                 gen = 'female'
             elif g == 'opposite' and r.gender == "female":
                 gen = 'male'
+            elif r.gender == "indeterminate":
+                gen = choice(['male', 'female', 'indeterminate'])
             else:
                 gen = r.gender
             d = {'age': r.age, 
@@ -409,6 +411,6 @@ def generate_people(n=1000):
 
     return job, age, ses
 
-# t = Town()
+t = Town()
 # t.print_town_stats()
 # t.print_town_csv()
