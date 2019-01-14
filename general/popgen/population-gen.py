@@ -95,11 +95,14 @@ class Resident:
         # Global brought in so that we only get the first names and such once.
         if not 'first_names' in globals():
             global first_names, surnames
-            first_names = self.get_lines('female_names.txt')
-            first_names.extend(self.get_lines('male_names.txt'))
+            first_names_f = self.get_lines('female_names.txt')
+            first_names_m = self.get_lines('male_names.txt')
             surnames = self.get_lines('surnames.txt')
-
-        return choice(first_names), choice(surnames)
+        if self.gender == "female":
+            fn = choice(first_names_f)
+        else:
+            fn = choice(first_names_m)
+        return fn, choice(surnames)
 
     def get_job(self):
         ''' Returns a job based on `Resident.ses`. Requires SES being set.
@@ -137,6 +140,7 @@ class Resident:
         '''
         self.ses = self.get_ses_type()
         self.age = self.get_age_type()
+        self.gender = self.get_random_group(['male', 'female'], [50])
         self.first_name, self.family_name = self.get_name()
         self.parents = [] # If a child is generated this way, they're an orphan
         self.spouse = None
@@ -246,10 +250,18 @@ class Town:
         # Spouse?
         c = self.get_random_group([True, False], [70])
         if c:
+            g = self.get_random_group(['opposite', 'same'], [85])
+            if g == 'opposite' and r.gender == "male":
+                gen = 'female'
+            elif g == 'opposite' and r.gender == "female":
+                gen = 'male'
+            else:
+                gen = r.gender
             d = {'age': r.age, 
                 'ses': r.ses, 
                 'family_name': r.family_name,
-                'job': r.job}  # For now, assume they have the same job
+                'job': r.job, # For now, assume they have the same job
+                'gender': gen}  
             spouse = Resident(d)
             spouse.job = r.job
             fam.append(spouse)
@@ -350,7 +362,6 @@ class Town:
             TODO:
                 * Add a spouse
                 * Add 'parent of' and 'child of' to Resident
-                * Eventually put families in houses
         '''
         self.residents = []
         self.buildings = []
