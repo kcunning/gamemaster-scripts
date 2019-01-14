@@ -70,6 +70,22 @@ class Resident:
 
         return self.get_random_group(age_types, chances)
 
+    def get_traits(self, n=3):
+        ''' Get some random traits for a person. List is from:
+
+            http://ideonomy.mit.edu/essays/traits.html
+        '''
+        # YES, GLOBALS ARE BAD, DO AS I SAY NOT AS I DO
+        if not 'traits' in globals():
+            global traits
+            traits = self.get_lines("traits.txt")
+        ts = []
+        while len(ts) != n:
+            t = choice(traits)
+            if not t in ts:
+                ts.append(t)
+        return ts
+
     def get_lines(self, fname):
         ''' Gets lines from a file, cleans them up, and returns them.
         '''
@@ -144,6 +160,7 @@ class Resident:
         self.first_name, self.family_name = self.get_name()
         self.parents = [] # If a child is generated this way, they're an orphan
         self.spouse = None
+        self.traits = self.get_traits()
 
         # Overwrite any vals we sent in after wasting precious electrons
         for val in vals:
@@ -335,12 +352,12 @@ class Town:
                 self.sectors[r.ses].append(b)
 
     def print_town_csv(self, delimeter="\t"):
-        hc = ["First name", "Family name","Age","Gender","Building","SES", "Job"]
+        hc = ["First name", "Family name","Age","Gender","Building","SES", "Job", "Traits"]
         hr = delimeter.join(hc)
         print hr
 
         rc = ["{fname}", "{lname}","{age}", "{gender}", "{building}", "{ses}", 
-            "{job}"]
+            "{job}", "{traits}"]
         rt = delimeter.join(rc)
 
         for b in self.buildings:
@@ -352,7 +369,8 @@ class Town:
                     building=b.type,
                     ses=r.ses,
                     job=r.job,
-                    gender=r.gender)
+                    gender=r.gender,
+                    traits=", ".join(r.traits).lower())
 
     def __init__(self, n=1000):
         ''' Generate a town of people! 
@@ -364,7 +382,6 @@ class Town:
             children. If so, we go ahead and create that child.
 
             TODO:
-                * Add a spouse
                 * Add 'parent of' and 'child of' to Resident
         '''
         self.residents = []
