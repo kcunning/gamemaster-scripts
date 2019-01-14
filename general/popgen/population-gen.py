@@ -376,10 +376,10 @@ class Town:
                 b.residents = [r] + fam
                 self.buildings.append(b)
             elif r.age == 'elderly':
-                fam = self.generate_family(r, "none")
+                fam = self.generate_family(r, 'none')
                 self.residents.extend(fam)
                 b = Building({'type': r.job})
-                b.residents = [r]
+                b.residents = [r] + fam
                 self.buildings.append(b)
             elif r.age == 'child':
                 b = Building({'type': 'none'})
@@ -409,6 +409,6 @@ def generate_people(n=1000):
 
     return job, age, ses
 
-t = Town()
-t.print_town_stats()
-t.print_town_csv()
+# t = Town()
+# t.print_town_stats()
+# t.print_town_csv()
