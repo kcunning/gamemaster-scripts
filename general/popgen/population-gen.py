@@ -342,35 +342,65 @@ class Town:
         print "Jobs", job
 
     def sort_buildings(self):
+        ''' Sorts buildings (and therefore, families) into sectors.
+
+            Each family has a small chance of living one step up or one step down
+            from their current SES. Maybe they like saving on rent, or the family
+            has fallen on hard times but can't move (or refuses to). 
+
+            Note that no one is automatically assigned to the slums or a private
+            estate due to their SES. That only happens when someone is poor / rich
+            and is randomly assigned there (5% chance)
+        '''
+        sectors = ['slums', 'poor', 'middle class', 'upper middle class', 'exclusive', 'private estate']
+        sdict = {
+            'poor': 'poor',
+            'struggling': 'poor',
+            'comfortable': 'middle class',
+            'affluent': 'upper middle class',
+            'rich': 'exclusive'
+        }
+
         self.sectors = {}
 
         for b in self.buildings:
             r = b.residents[0]
-            if not r.ses in self.sectors:
-                self.sectors[r.ses] = [b]
+            s = sdict[r.ses]
+
+            i = sectors.index(s)
+            s = self.get_random_group([s, sectors[i-1], sectors[i+1]], [90, 5])
+
+            if not s in self.sectors:
+                self.sectors[s] = [b]
             else:
-                self.sectors[r.ses].append(b)
+                self.sectors[s].append(b)
 
     def print_town_csv(self, delimeter="\t"):
-        hc = ["First name", "Family name","Age","Gender","Building","SES", "Job", "Traits"]
+        ''' TODO: Give an option to allow for printing to a file
+
+            TODO: Actually use the CSV library
+        '''
+        hc = ["First name", "Family name","Age","Gender","Building","SES", "Job", "Traits", "Sector"]
         hr = delimeter.join(hc)
         print hr
 
         rc = ["{fname}", "{lname}","{age}", "{gender}", "{building}", "{ses}", 
-            "{job}", "{traits}"]
+            "{job}", "{traits}", "{sector}"]
         rt = delimeter.join(rc)
 
-        for b in self.buildings:
-            for r in b.residents:
-                print rt.format(
-                    fname=r.first_name,
-                    lname=r.family_name,
-                    age=r.age,
-                    building=b.type,
-                    ses=r.ses,
-                    job=r.job,
-                    gender=r.gender,
-                    traits=", ".join(r.traits).lower())
+        for s in self.sectors:
+            for b in self.sectors[s]:
+                for r in b.residents:
+                    print rt.format(
+                        fname=r.first_name,
+                        lname=r.family_name,
+                        age=r.age,
+                        building=b.type,
+                        ses=r.ses,
+                        job=r.job,
+                        gender=r.gender,
+                        traits=", ".join(r.traits).lower(),
+                        sector=s)
 
     def __init__(self, n=1000):
         ''' Generate a town of people! 
