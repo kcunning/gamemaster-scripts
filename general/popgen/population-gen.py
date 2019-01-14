@@ -150,7 +150,7 @@ class Resident:
         if self.age != 'child' and not hasattr(self, 'job'):
             self.job = self.get_job()
         else:
-            self.job = "none"
+            self.job = "child"
         
 
     def __str__(self):
@@ -290,7 +290,8 @@ class Town:
         ses = {}
         age = {}
         btypes = {}
-        fields = ['ses', 'age']
+        job = {}
+        fields = ['ses', 'age', 'job']
         for r in self.residents:
             for field in fields:
                 if not getattr(r, field) in locals()[field]:
@@ -307,6 +308,7 @@ class Town:
         print "SES", ses
         print "AGE", age
         print "Building types", btypes
+        print "Jobs", job
 
     def sort_buildings(self):
         self.sectors = {}
@@ -319,17 +321,18 @@ class Town:
                 self.sectors[r.ses].append(b)
 
     def print_town_csv(self, delimeter="\t"):
-        hc = ["Name", "Age","Building","SES", "Job"]
+        hc = ["First name", "Family name","Age","Building","SES", "Job"]
         hr = delimeter.join(hc)
         print hr
 
-        rc = ["{name}", "{age}", "{building}", "{ses}", "{job}"]
+        rc = ["{fname}", "{lname}","{age}", "{building}", "{ses}", "{job}"]
         rt = delimeter.join(rc)
 
         for b in self.buildings:
             for r in b.residents:
                 print rt.format(
-                    name=r.first_name + " " + r.family_name,
+                    fname=r.first_name,
+                    lname=r.family_name,
                     age=r.age,
                     building=b.type,
                     ses=r.ses,
@@ -397,6 +400,4 @@ def generate_people(n=1000):
 
 t = Town()
 t.print_town_stats()
-
 t.print_town_csv()
-
