@@ -253,7 +253,29 @@ class Building:
 
 
 class Town:
+    ''' A town is a split into sections (neighborhoods). Sections contain buildings,
+        and buildings contain residents (from one to seven). 
+
+        Creating a town will generate a random number of residents and houses, and
+        sort the buildings into neighborhoods depending on the wealth level (SES)
+        of the residents.
+
+    '''
     def get_random_group(self, names, chances):
+        ''' Given a list of options and the chance for each, return one of the
+            named groups. The index of each named group matches the index of the chance
+            of it being picked.
+
+            The length of `chances` should be one less than `names`. 
+
+            Example: If you send in the named groups `["one", "two", "three"] and the
+            chances `[40, 20]`, the chances of getting "one" is 40% and "two" is 20%.
+            Since 100 - 40 - 20 is 40, the chances of getting "three" is 40%.
+
+            The reason the chances are expicitly stated for the last item in `names`
+            is just to make fiddling with numbers easier. It was a pain to keep having
+            to make sure they all added up to 100.
+        '''
         n = int(random() * 100)
         t = 0
         for i in range(len(chances)):
@@ -263,6 +285,18 @@ class Town:
         return names[-1]
 
     def generate_family(self, r, t):
+        ''' Given a single resident, generates a family for that resident.
+
+            There is a 50/50 chance that the resident will be given a spouse.
+            Spouses have the same job as each other for now.
+
+            If the resident is an adult, they will be given somewhere between zero
+            and five children.
+
+            `t` is the type of 'child' the resident will be given. For now, 
+            only adults can have children, and those children have the age type of
+            'child'. 
+        '''
         fam = []
         # Spouse?
         c = self.get_random_group([True, False], [70])
@@ -315,6 +349,8 @@ class Town:
         return fam
 
     def print_town_stats(self):
+        ''' Prints out the high level stats for a town in a horrible format.
+        '''
         print "Number of residents:", len(self.residents)
         print "Number of buildings:", len(self.buildings)
 
@@ -376,7 +412,11 @@ class Town:
                 self.sectors[s].append(b)
 
     def print_town_csv(self, delimeter="\t"):
-        ''' TODO: Give an option to allow for printing to a file
+        ''' This function does not work as it says on the tin for now. For ease
+            of troubleshooting, it just prints out tab separated values and does
+            not use the `csv` library. 
+
+            TODO: Give an option to allow for printing to a file
 
             TODO: Actually use the CSV library
         '''
