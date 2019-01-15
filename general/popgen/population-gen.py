@@ -234,8 +234,8 @@ class Building:
 
             Finally, if nothing is sent in vals, a random building is sent back.
         '''
-        btypes = ['residence', 'merchant', 'artisan', 'temple', 'shopkeep']
-        chances = [50, 20, 20, 5]
+        btypes = ['residence', 'merchant', 'artisan', 'temple', 'shopkeep', 'tavern']
+        chances = [50, 20, 15, 5]
 
         subtypes = {
             'residence': ['residence'],
