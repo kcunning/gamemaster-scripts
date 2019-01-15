@@ -1,5 +1,7 @@
+import csv
 from random import choice, random
 from string import lowercase
+import sys
 
 # To do:
 # Class for shops
@@ -489,7 +491,7 @@ class Town:
             else:
                 self.sectors[s].append(b)
 
-    def print_town_csv(self, delimeter="\t"):
+    def print_town_csv(self, delimeter=";", fn=None):
         ''' This function does not work as it says on the tin for now. For ease
             of troubleshooting, it just prints out tab separated values and does
             not use the `csv` library. 
@@ -498,29 +500,22 @@ class Town:
 
             TODO: Actually use the CSV library
         '''
-        hc = ["First name", "Family name","Age","Gender","Building","Subtype", "Name", "SES    ", "Job", "Traits", "Sector"]
-        hr = delimeter.join(hc)
-        print hr
 
-        rc = ["{fname}", "{lname}","{age}", "{gender}", "{building}", "{sub}", "{name}", 
-            "{ses}   ", "{job}", "{traits}", "{sector}"]
-        rt = delimeter.join(rc)
+        hc = ["First name", "Family name","Age","Gender","Building","Subtype", 
+            "Name", "SES", "Job", "Traits", "Sector"]
+        rows = [hc]
 
         for s in self.sectors:
             for b in self.sectors[s]:
                 for r in b.residents:
-                    print rt.format(
-                        fname=r.first_name,
-                        lname=r.family_name,
-                        age=r.age,
-                        building=b.type,
-                        ses=r.ses,
-                        job=r.job,
-                        gender=r.gender,
-                        traits=", ".join(r.traits).lower(),
-                        sector=s,
-                        sub=b.subtype,
-                        name=b.name)
+                    line = [r.first_name, r.family_name, r.age, r.gender, 
+                        b.type, b.subtype, b.name, 
+                        r.ses, r.job, ", ".join(r.traits).lower(), s]
+                    rows.append(line)
+
+        writer = csv.writer(sys.stdout, delimiter=delimeter)
+        for row in rows:
+            writer.writerow(row)
 
     def __init__(self, n=1000):
         ''' Generate a town of people! 
@@ -557,7 +552,7 @@ class Town:
                 b.residents = [r]
                 self.buildings.append(b)
 
-            if not b.type in ['residence', 'artisan', 'none', 'temple', 'tavern']:
+            if not b.type in ['residence', 'artisan', 'none', 'temple']:
                 b.name = b.get_random_building_name()
             else:
                 b.name = ''
@@ -586,5 +581,4 @@ def generate_people(n=1000):
     return job, age, ses
 
 t = Town(500)
-t.print_town_stats()
 t.print_town_csv()
