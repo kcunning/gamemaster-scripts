@@ -291,7 +291,10 @@ class Building:
 
         subtypes = ['general goods', 'magic goods', 'armor and weapons']
 
-        self.subtype = choice(subtypes)
+        if self.type != 'tavern':
+            self.subtype = choice(subtypes)
+        else:
+            self.subtype = "tavern"
 
         tpls = [
             ["{} and {}", ["noun", "noun"]],
@@ -554,7 +557,7 @@ class Town:
                 b.residents = [r]
                 self.buildings.append(b)
 
-            if not b.type in ['residence', 'artisan', 'none']:
+            if not b.type in ['residence', 'artisan', 'none', 'temple', 'tavern']:
                 b.name = b.get_random_building_name()
             else:
                 b.name = ''
