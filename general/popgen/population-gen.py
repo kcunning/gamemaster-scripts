@@ -135,9 +135,10 @@ class Resident:
         '''
         ses_jobs = {
             'rich': ['noblilty', 'land owner'],
-            'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service'],
-            'comfortable': ['shopkeep', 'artisan', 'trader', 'service', 'guard', 'temple'],
-            'struggling': ['worker', 'field hand', 'guard', 'service'],
+            'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service', 'tavern'],
+            'comfortable': ['shopkeep', 'artisan', 'trader', 'service', 'guard', 'temple',
+                'tavern'],
+            'struggling': ['worker', 'field hand', 'guard', 'service', 'tavern'],
             'poor': ['worker', 'field hand', 'beggar', 'service']
         }
 
@@ -235,7 +236,7 @@ class Building:
         '''
         btypes = ['residence', 'merchant', 'artisan', 'temple', 'shopkeep']
         chances = [50, 20, 20, 5]
-        
+
         subtypes = {
             'residence': ['residence'],
             'merchant': ['merchant'],
@@ -249,9 +250,9 @@ class Building:
         subtype_chances = {
             'residence': [100],
             'merchant': [100],
-            'artisan': [int(100/subtypes['artisan'])] * len(subtypes['artisan'] - 1),
-            'temple': [int(100/subtypes['temple'])] * len(subtypes['temple'] - 1),
-            'shopkeep': [int(100/subtypes['shopkeep'])] * len(subtypes['shopkeep'] - 1),
+            'artisan': [int(100/len(subtypes['artisan']))] * (len(subtypes['artisan']) - 1),
+            'temple': [int(100/len(subtypes['temple']))] * (len(subtypes['temple']) - 1),
+            'shopkeep': [int(100/len(subtypes['shopkeep']))] * (len(subtypes['shopkeep']) - 1),
         }
         
 
