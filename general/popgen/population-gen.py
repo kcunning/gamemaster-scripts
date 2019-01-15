@@ -405,8 +405,8 @@ class Town:
             has fallen on hard times but can't move (or refuses to). 
 
             Note that no one is automatically assigned to the slums or a private
-            estate due to their SES. That only happens when someone is poor / rich
-            and is randomly assigned there (5% chance)
+            estate due to their SES. There is a chance of being moved up or down a
+            tier (5% up, 5% down).
         '''
         sectors = ['slums', 'poor', 'middle class', 'upper middle class', 'exclusive', 'private estate']
         sdict = {
@@ -520,6 +520,6 @@ def generate_people(n=1000):
 
     return job, age, ses
 
-t = Town()
+t = Town(50)
 t.print_town_stats()
 t.print_town_csv()
