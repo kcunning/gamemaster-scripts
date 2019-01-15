@@ -197,6 +197,21 @@ class Building:
         of business.
     '''
 
+    def get_lines(self, fname):
+        ''' Gets lines from a file, cleans them up, and returns them.
+        '''
+        with open(fname) as f:
+            lines = f.readlines()
+
+        data = []
+        for line in lines:
+            t = line.strip()
+            # I don't values with unicode characters right now.
+            if t != str(t): continue 
+            if t: data.append(t)
+
+        return data
+
     def get_random_group(self, names, chances):
         ''' Given a list of options and the chance for each, return one of the
             named groups. The index of each named group matches the index of the chance
@@ -240,12 +255,14 @@ class Building:
         subtypes = {
             'residence': ['residence'],
             'merchant': ['merchant'],
-            'artisan': ['alchemy', 'armor', 'books', 'bows', 'calligraphy', 
-                'carpentry', 'cloth', 'clothing', 'glass', 'jewelry', 'leather', 'locks', 
-                'paintings', 'pottery', 'sculptures', 'shoes', 'stonemasonry', 
-                'traps', 'weapons'],
-            'temple': ['LG', 'NG', 'CG', 'LN', 'N', 'CN'],
-            'shopkeep': ['general', 'magic', 'armor and weapons'],
+            'artisan': ['bookmaker', 'scribe', 
+                'carpenter', 'tailor', 'glassblower', 'jewelry maker', 
+                'artist', 'potter', 'cobbler', 'stonemason'],
+            'temple': ['LG temple', 'NG temple', 'CG temple', 'LN temple', 
+                'N temple', 'CN temple'],
+            'shopkeep': ['general goods', 'magic goods', 'armor and weapons'],
+            'none': ['street', 'shack'],
+            'tavern': ['tavern']
         }
         subtype_chances = {
             'residence': [100],
@@ -253,22 +270,60 @@ class Building:
             'artisan': [int(100/len(subtypes['artisan']))] * (len(subtypes['artisan']) - 1),
             'temple': [int(100/len(subtypes['temple']))] * (len(subtypes['temple']) - 1),
             'shopkeep': [int(100/len(subtypes['shopkeep']))] * (len(subtypes['shopkeep']) - 1),
+            'none': [50],
+            'tavern': [100]
         }
-        
 
-        if 'type' in vals and vals['type'] in btypes + ['none']:
-            return vals['type']
-        if 'type' in vals:
-            return 'residence'
+        if not 'type' in vals:
+            t = self.get_random_group(btypes, chances)
+        elif vals['type'] not in btypes:
+            t = 'residence'
+        else:
+            t = vals['type']
 
-        return self.get_random_group(btypes, chances)
+        return t, self.get_random_group(subtypes[t], subtype_chances[t])
+
+    def get_random_building_name(self):
+        if not "nouns" in globals():
+            global nouns, adjs
+            nouns = self.get_lines("nouns.txt")
+            adjs = self.get_lines("adjectives.txt")
+
+        subtypes = ['general goods', 'magic goods', 'armor and weapons']
+
+        self.subtype = choice(subtypes)
+
+        tpls = [
+            ["{} and {}", ["noun", "noun"]],
+            ["{}'s {}", ["noun", "noun"]],
+            ["The {} {}", ["adj", "noun"]],
+            ["{}'s {}", ["surname", "subtype"]],
+            ["{} by {}", ["subtype", "firstname"]]
+        ]
+
+        tpl = choice(tpls)
+
+        vals = []
+        for i in tpl[1]:
+            if i == "noun":
+                vals.append(choice(nouns))
+            elif i == "adj":
+                vals.append(choice(adjs))
+            elif i == "surname":
+                vals.append(self.residents[0].family_name)
+            elif i == "subtype":
+                vals.append(self.subtype)
+            elif i == "firstname":
+                vals.append(self.residents[0].first_name)
+
+        return tpl[0].format(*vals).title().replace("'S", "'s").replace("s's", "'s")
 
     def __init__(self, vals={}):
         ''' Creates a building. If nothing is sent in vals, it will be a random
             empty building. Residents are set in the Town class during population
             generation.
         '''
-        self.type = self.get_building_type(vals)
+        self.type, self.subtype = self.get_building_type(vals)
         self.residents = []
 
 
@@ -440,12 +495,12 @@ class Town:
 
             TODO: Actually use the CSV library
         '''
-        hc = ["First name", "Family name","Age","Gender","Building","SES", "Job", "Traits", "Sector"]
+        hc = ["First name", "Family name","Age","Gender","Building","Subtype", "Name", "SES    ", "Job", "Traits", "Sector"]
         hr = delimeter.join(hc)
         print hr
 
-        rc = ["{fname}", "{lname}","{age}", "{gender}", "{building}", "{ses}", 
-            "{job}", "{traits}", "{sector}"]
+        rc = ["{fname}", "{lname}","{age}", "{gender}", "{building}", "{sub}", "{name}", 
+            "{ses}   ", "{job}", "{traits}", "{sector}"]
         rt = delimeter.join(rc)
 
         for s in self.sectors:
@@ -460,7 +515,9 @@ class Town:
                         job=r.job,
                         gender=r.gender,
                         traits=", ".join(r.traits).lower(),
-                        sector=s)
+                        sector=s,
+                        sub=b.subtype,
+                        name=b.name)
 
     def __init__(self, n=1000):
         ''' Generate a town of people! 
@@ -497,6 +554,11 @@ class Town:
                 b.residents = [r]
                 self.buildings.append(b)
 
+            if not b.type in ['residence', 'artisan', 'none']:
+                b.name = b.get_random_building_name()
+            else:
+                b.name = ''
+
         self.sort_buildings()
 
 
@@ -520,6 +582,6 @@ def generate_people(n=1000):
 
     return job, age, ses
 
-t = Town(50)
+t = Town(500)
 t.print_town_stats()
 t.print_town_csv()
