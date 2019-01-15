@@ -235,6 +235,25 @@ class Building:
         '''
         btypes = ['residence', 'merchant', 'artisan', 'temple', 'shopkeep']
         chances = [50, 20, 20, 5]
+        
+        subtypes = {
+            'residence': ['residence'],
+            'merchant': ['merchant'],
+            'artisan': ['alchemy', 'armor', 'books', 'bows', 'calligraphy', 
+                'carpentry', 'cloth', 'clothing', 'glass', 'jewelry', 'leather', 'locks', 
+                'paintings', 'pottery', 'sculptures', 'shoes', 'stonemasonry', 
+                'traps', 'weapons'],
+            'temple': ['LG', 'NG', 'CG', 'LN', 'N', 'CN'],
+            'shopkeep': ['general', 'magic', 'armor and weapons'],
+        }
+        subtype_chances = {
+            'residence': [100],
+            'merchant': [100],
+            'artisan': [int(100/subtypes['artisan'])] * len(subtypes['artisan'] - 1),
+            'temple': [int(100/subtypes['temple'])] * len(subtypes['temple'] - 1),
+            'shopkeep': [int(100/subtypes['shopkeep'])] * len(subtypes['shopkeep'] - 1),
+        }
+        
 
         if 'type' in vals and vals['type'] in btypes + ['none']:
             return vals['type']
