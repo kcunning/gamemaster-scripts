@@ -559,26 +559,5 @@ class Town:
 
         self.sort_buildings()
 
-
-def generate_people(n=1000):
-    ''' Just a test function for seeing how a town of 1000 people
-        shakes out
-    '''
-    job = {}
-    age = {}
-    ses = {}
-
-    for i in range(n):
-        r = Resident()
-        fields = ['job', 'age', 'ses']
-
-        for field in fields:
-            if not getattr(r, field) in locals()[field]:
-                locals()[field][getattr(r, field)] = 1
-            else:
-                locals()[field][getattr(r, field)] += 1
-
-    return job, age, ses
-
 t = Town(500)
 t.print_town_csv()
