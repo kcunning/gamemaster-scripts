@@ -315,6 +315,8 @@ class Building:
         ]
 
         tpl = choice(tpls)
+        if self.subtype == "tavern" and tpl[0] == "{} by {}":
+            tpl = ["{}'s {}", ["surname", "subtype"]]
 
         vals = []
         for i in tpl[1]:
@@ -510,7 +512,7 @@ class Town:
 
         '''
 
-        hc = ["First name", "Family name","Age","Gender","Building","Subtype", 
+        hc = ["First name", "Family name","Age","Gender","Business Name","Subtype", 
             "Name", "SES", "Job", "Traits", "Sector"]
         rows = [hc]
 
