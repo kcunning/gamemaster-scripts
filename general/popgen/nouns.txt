@@ -1,3 +1,9 @@
+eel
+half-elf
+half-orc
+elf
+orc
+gnome
 shovel
 barrel
 goat

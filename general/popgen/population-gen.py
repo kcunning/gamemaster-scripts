@@ -37,7 +37,7 @@ class Resident:
             chances `[40, 20]`, the chances of getting "one" is 40% and "two" is 20%.
             Since 100 - 40 - 20 is 40, the chances of getting "three" is 40%.
 
-            The reason the chances are expicitly stated for the last item in `names`
+            The reason the chances are not explicitly stated for the last item in `names`
             is just to make fiddling with numbers easier. It was a pain to keep having
             to make sure they all added up to 100.
         '''
@@ -229,7 +229,7 @@ class Building:
             chances `[40, 20]`, the chances of getting "one" is 40% and "two" is 20%.
             Since 100 - 40 - 20 is 40, the chances of getting "three" is 40%.
 
-            The reason the chances are expicitly stated for the last item in `names`
+            The reason the chances are not explicitly stated for the last item in `names`
             is just to make fiddling with numbers easier. It was a pain to keep having
             to make sure they all added up to 100.
         '''
@@ -266,7 +266,7 @@ class Building:
                 'artist', 'potter', 'cobbler', 'stonemason'],
             'temple': ['LG temple', 'NG temple', 'CG temple', 'LN temple', 
                 'N temple', 'CN temple'],
-            'shopkeep': ['general goods', 'magic goods', 'armor and weapons'],
+            'shopkeep': ['general goods', 'magical goods', 'armor and weapons'],
             'none': ['street', 'shack'],
             'tavern': ['tavern']
         }
@@ -297,7 +297,7 @@ class Building:
             # -ing verbs
             gers = self.get_lines("gerunds.txt")    
 
-        subtypes = ['general goods', 'magic goods', 'armor and weapons']
+        subtypes = ['general goods', 'magical goods', 'armor and weapons']
 
         if self.type != 'tavern':
             self.subtype = choice(subtypes)
@@ -567,5 +567,5 @@ class Town:
 
         self.sort_buildings()
 
-t = Town(500)
-t.print_town_csv()
+t = Town(1000)
+# t.print_town_csv()
