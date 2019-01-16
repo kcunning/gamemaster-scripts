@@ -4,9 +4,9 @@ from random import choice, random
 from string import lowercase
 import sys
 
-# To do:
-# Class for shops
-# Docs!
+# TODO:
+#   More options for CSV. We need some high level stats
+#   Better printout for town stats
 
 class Resident:
     ''' A resident is a single person within a town.
@@ -141,7 +141,7 @@ class Resident:
             their own business or make their own goods.
         '''
         ses_jobs = {
-            'rich': ['noblilty', 'land owner'],
+            'rich': ['nobility', 'land owner'],
             'affluent': ['shopkeep', 'artisan', 'trader', 'landlord', 'service', 'tavern'],
             'comfortable': ['shopkeep', 'artisan', 'trader', 'service', 'guard', 'temple',
                 'tavern'],
@@ -440,11 +440,18 @@ class Town:
 
         return fam
 
+    def print_stat(self, d):
+        keys = d.keys()
+        keys.sort()
+        for k in keys:
+            print "  ", k, d[k]
+
     def print_town_stats(self):
         ''' Prints out the high level stats for a town in a horrible format.
         '''
         print "Number of residents:", len(self.residents)
         print "Number of buildings:", len(self.buildings)
+        print
 
         ses = {}
         age = {}
@@ -464,10 +471,20 @@ class Town:
             else:
                 btypes[b.type] += 1
 
-        print "SES", ses
-        print "AGE", age
-        print "Building types", btypes
-        print "Jobs", job
+        print "Wealth levels"
+        self.print_stat(ses)
+        print
+
+        print "Ages"
+        self.print_stat(age)
+        print
+
+        print "Building types"
+        self.print_stat(btypes)
+        print
+
+        print "Jobs"
+        self.print_stat(job)
 
     def sort_buildings(self):
         ''' Sorts buildings (and therefore, families) into sectors.
@@ -507,9 +524,6 @@ class Town:
         ''' This function does not work as it says on the tin for now. For ease
             of troubleshooting, it just prints out tab separated values and does
             not use the `csv` library. 
-
-            TODO: Give an option to allow for printing to a file
-
         '''
 
         hc = ["First name", "Family name","Age","Gender","Business Name","Subtype", 
@@ -575,7 +589,6 @@ class Town:
         self.sort_buildings()
 
 def main():
-
     argv = sys.argv[1:]
     opts, args = getopt.getopt(argv, "n:f:")
 
@@ -590,6 +603,7 @@ def main():
     print "Generating a town of size", n
     t = Town(n)    
     t.print_town_csv(fn=fn)
+    t.print_town_stats()
 
 if __name__ == "__main__":
     main()
