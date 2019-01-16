@@ -331,7 +331,7 @@ class Building:
             elif i == "gerund":
                 vals.append(choice(gers))
 
-        return tpl[0].format(*vals).title().replace("'S", "'s").replace("s's", "'s")
+        return tpl[0].format(*vals).title().replace("'S", "'s").replace("s's", "s'")
 
     def __init__(self, vals={}):
         ''' Creates a building. If nothing is sent in vals, it will be a random
