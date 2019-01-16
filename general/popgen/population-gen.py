@@ -14,8 +14,12 @@ class Resident:
         and a job. Optionally, they can have a spouse and parents.
 
         Children are assumed to have no job. Note that 'children' in this case
-        are simply 'people too young to work.' Also, a child randomly generated
-        by this class is assumed to be an orpha, since family units are generated
+        are simply 'people too young to have their own job.' They're probably
+        helping out their parents with whatever they're doing if they're not
+        being tutored somehow.
+
+        Also, a child randomly generated
+        by this class is assumed to be an orphan, since family units are generated
         via the Town class.
 
         Values can be sent into the init. Any values sent in will overwrite the 
@@ -287,9 +291,11 @@ class Building:
 
     def get_random_building_name(self):
         if not "nouns" in globals():
-            global nouns, adjs
+            global nouns, adjs, gers
             nouns = self.get_lines("nouns.txt")
             adjs = self.get_lines("adjectives.txt")
+            # -ing verbs
+            gers = self.get_lines("gerunds.txt")    
 
         subtypes = ['general goods', 'magic goods', 'armor and weapons']
 
@@ -300,10 +306,11 @@ class Building:
 
         tpls = [
             ["{} and {}", ["noun", "noun"]],
-            ["{}'s {}", ["noun", "noun"]],
+            ["The {}'s {}", ["noun", "noun"]],
             ["The {} {}", ["adj", "noun"]],
             ["{}'s {}", ["surname", "subtype"]],
-            ["{} by {}", ["subtype", "firstname"]]
+            ["{} by {}", ["subtype", "firstname"]],
+            ["The {} {}", ["gerund", "noun"]]
         ]
 
         tpl = choice(tpls)
@@ -320,6 +327,8 @@ class Building:
                 vals.append(self.subtype)
             elif i == "firstname":
                 vals.append(self.residents[0].first_name)
+            elif i == "gerund":
+                vals.append(choice(gers))
 
         return tpl[0].format(*vals).title().replace("'S", "'s").replace("s's", "'s")
 
@@ -498,7 +507,6 @@ class Town:
 
             TODO: Give an option to allow for printing to a file
 
-            TODO: Actually use the CSV library
         '''
 
         hc = ["First name", "Family name","Age","Gender","Building","Subtype", 
