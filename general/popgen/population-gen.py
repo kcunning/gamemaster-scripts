@@ -1,4 +1,5 @@
 import csv
+import getopt
 from random import choice, random
 from string import lowercase
 import sys
@@ -520,8 +521,12 @@ class Town:
                         b.type, b.subtype, b.name, 
                         r.ses, r.job, ", ".join(r.traits).lower(), s]
                     rows.append(line)
+        if fn == None:
+            writer = csv.writer(sys.stdout, delimiter=delimeter)
+        else:
+            f = open(fn, "w")
+            writer = csv.writer(f, delimiter=delimeter)
 
-        writer = csv.writer(sys.stdout, delimiter=delimeter)
         for row in rows:
             writer.writerow(row)
 
@@ -567,5 +572,22 @@ class Town:
 
         self.sort_buildings()
 
-t = Town(1000)
-# t.print_town_csv()
+def main():
+
+    argv = sys.argv[1:]
+    opts, args = getopt.getopt(argv, "n:f:")
+
+    n = 1000
+    fn = None
+    for opt, arg in opts:
+        if opt == "-n":
+            n = int(arg)
+        if opt == "-f":
+            fn = arg
+
+    print "Generating a town of size", n
+    t = Town(n)    
+    t.print_town_csv(fn=fn)
+
+if __name__ == "__main__":
+    main()
