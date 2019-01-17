@@ -90,7 +90,7 @@ Hardworking
 Healthy
 Hearty
 Helpful
-Herioc
+Heroic
 High-minded
 Honest
 Honorable
@@ -159,7 +159,7 @@ Protective
 Providential
 Prudent
 Punctual
-Pruposeful
+Purposeful
 Rational
 Realistic
 Reflective
@@ -182,7 +182,7 @@ Self-critical
 Self-defacing
 Self-denying
 Self-reliant
-Self-sufficent
+Self-sufficient
 Sensitive
 Sentimental
 Seraphic
@@ -245,7 +245,7 @@ Breezy
 Businesslike
 Busy
 Casual
-Crebral
+Cerebral
 Chummy
 Circumspect
 Competitive
@@ -275,7 +275,7 @@ Frugal
 Glamorous
 Guileless
 High-spirited
-Huried
+Hurried
 Hypnotic
 Iconoclastic
 Idiosyncratic
@@ -295,7 +295,7 @@ Neutral
 Noncommittal
 Noncompetitive
 Obedient
-Old-fashined
+Old-fashioned
 Ordinary
 Outspoken
 Paternalistic
@@ -323,7 +323,7 @@ Soft
 Solemn
 Solitary
 Stern
-Stoiid
+Stolid
 Strict
 Stubborn
 Stylish
@@ -340,8 +340,8 @@ Unfathomable
 Unhurried
 Uninhibited
 Unpatriotic
-Unpredicatable
-Unreligious
+Unpredictable
+Irreligious
 Unsentimental
 Whimsical
 Abrasive
@@ -356,7 +356,7 @@ Anxious
 Apathetic
 Arbitrary
 Argumentative
-Arrogantt
+Arrogant
 Artificial
 Asocial
 Assertive
@@ -366,12 +366,12 @@ Bewildered
 Bizarre
 Bland
 Blunt
-Biosterous
+Boisterous
 Brittle
 Brutal
 Calculating
 Callous
-Cantakerous
+Cantankerous
 Careless
 Cautious
 Charmless
@@ -422,7 +422,7 @@ Disrespectful
 Disruptive
 Dissolute
 Dissonant
-Distractible
+Distracted
 Disturbing
 Dogmatic
 Domineering
@@ -581,7 +581,7 @@ Sloppy
 Slow
 Sly
 Small-thinking
-Softheaded
+Soft-headed
 Sordid
 Steely
 Stiff
