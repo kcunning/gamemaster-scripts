@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from xmljson import badgerfish as bf
 from xml.etree.ElementTree import fromstring
 
@@ -234,7 +236,7 @@ def main(fn1, fn2):
     c2 = d['document']['public']['character']
 
     diffs = compare_chars(c1, c2)
-    print "Diffs", diffs
+    print("Diffs", diffs)
 
 if __name__ == '__main__':
         main("arc1.xml", "arc2.xml")

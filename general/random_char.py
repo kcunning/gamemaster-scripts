@@ -135,4 +135,4 @@ def main():
     print_results(stats, results)
 
 if __name__ == '__main__':
-main()
+    main()

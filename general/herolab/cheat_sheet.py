@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from xmljson import badgerfish as bf
 from xml.etree.ElementTree import fromstring
 
@@ -13,7 +15,7 @@ def get_data(fn):
     return d
 
 def find_armor(ch, t):
-    print ch[t]
+    print(ch[t])
     if 'item' in ch[t]:
         for item in ch[t]['item']:
             if 'itemslot' in item:
@@ -38,7 +40,7 @@ def get_passive_vals(ch):
     a = find_armor(ch, "magicitems")
     if not a:
         a = find_armor(ch, "gear")
-    print a
+    print(a)
     return {'skills': skd, 'saves': svd}
 
 
@@ -108,7 +110,7 @@ def main():
         cheats.append(get_char_vals(ch))
 
     for cheat in cheats:
-        print cheat
+        print(cheat)
         
 
 if __name__ == '__main__':

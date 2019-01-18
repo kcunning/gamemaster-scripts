@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from xmljson import badgerfish as bf
 from xml.etree.ElementTree import fromstring
 
@@ -25,7 +27,7 @@ def print_char_loot(loot, d):
         # Prepending an apostrophe fixes this behavior.
         if item[0][0] == "+":
             item[0] = "'" + item[0]
-        print d.join(map(str, item))
+        print(d.join(map(str, item)))
 
 def main(fn):
     f = open(fn)
