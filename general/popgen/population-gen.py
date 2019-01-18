@@ -1,7 +1,8 @@
+#!/usr/bin/env python3
+
 import csv
 import getopt
 from random import choice, random
-from string import lowercase
 import sys
 
 # TODO:
@@ -71,7 +72,7 @@ class Resident:
             chance for a child to be generated on their own. A child generated this
             way is an orphan
         '''
-        
+
         age_types = ['elderly', 'adult', 'child']
         chances = [20, 78]
 
@@ -423,7 +424,7 @@ class Town:
         options = [0, 1, 2, 3, 4, 5]
         chances = [20, 30, 15, 10, 10]
         n = self.get_random_group(options, chances)
-        
+
         if n == 0:
             return fam
 
@@ -442,16 +443,16 @@ class Town:
 
     def print_stat(self, d):
         keys = d.keys()
-        keys.sort()
+        sorted(keys)
         for k in keys:
-            print "  ", k, d[k]
+            print("  ", k, d[k])
 
     def print_town_stats(self):
         ''' Prints out the high level stats for a town in a horrible format.
         '''
-        print "Number of residents:", len(self.residents)
-        print "Number of buildings:", len(self.buildings)
-        print
+        print("Number of residents:", len(self.residents))
+        print("Number of buildings:", len(self.buildings))
+        print()
 
         ses = {}
         age = {}
@@ -471,19 +472,19 @@ class Town:
             else:
                 btypes[b.type] += 1
 
-        print "Wealth levels"
+        print("Wealth levels")
         self.print_stat(ses)
-        print
+        print()
 
-        print "Ages"
+        print("Ages")
         self.print_stat(age)
-        print
+        print()
 
-        print "Building types"
+        print("Building types")
         self.print_stat(btypes)
-        print
+        print()
 
-        print "Jobs"
+        print("Jobs")
         self.print_stat(job)
 
     def sort_buildings(self):
@@ -600,7 +601,7 @@ def main():
         if opt == "-f":
             fn = arg
 
-    print "Generating a town of size", n
+    print("Generating a town of size", n)
     t = Town(n)    
     t.print_town_csv(fn=fn)
     t.print_town_stats()

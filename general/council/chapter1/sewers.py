@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # This file is meant to run the random sewer encounter that appears
 # in part two of _Council of Thieves: The Bastards of Erebus_. It
 # will not run the encounters for you, but it will save you from lots of
@@ -80,23 +82,23 @@ def get_sewer_feature():
 
 events = []
 
-print "Let's run around some sewers!"
+print("Let's run around some sewers!")
 while True:
     t, f = get_sewer_feature()
-    print "***{}***".format(t)
+    print("***{}***".format(t))
     r = f()
-    print "\t", r
+    print("\t", r)
 
     events.append(t + ': ' + str(r))
 
     while True:
-        i = raw_input("Any key for another, e for events, q to quit: ")
+        i = input("Any key for another, e for events, q to quit: ")
         if i.lower() == 'e':
             for event in events:
-                print event
+                print(event)
         else:
             break
     if i.lower() == 'q':
-        print "Here were all of your events:"
-        for event in events: print event
+        print("Here were all of your events:")
+        for event in events: print(event)
         break

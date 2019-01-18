@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Get a sheet of pre-rolled values that I can tick off during combat.
 from random import randint
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # The purpose of this script is just roll every die I might need
 # because having to pick out which sided die I need is too much
 # effort.
@@ -15,24 +17,24 @@ def get_rolls(dtypes, n):
     return r
 
 def print_rolls(rolls, dtypes):
-    print rolls['time'].strftime("%H:%M:%S")
+    print(rolls['time'].strftime("%H:%M:%S"))
     for dt in dtypes:
-        print "\t", dt, "->", rolls[dt]
+        print("\t", dt, "->", rolls[dt])
 
 def print_roll_history(history, dice_types):
     for log in history:
-        print log['time'].strftime("%H:%M:%S"), "Modifier:", log['plus']
-        print "\t",
+        print(log['time'].strftime("%H:%M:%S"), "Modifier:", log['plus'])
+        print("\t",)
         for dt in dice_types:
-            print str(dt) + "->" + log[dt],
-        print
+            print(str(dt) + "->" + log[dt],)
+        print()
 
 dice_types = [2, 4, 6, 8, 10, 12, 20, 100]
 
 roll_log = []
 
 while True:
-    c = raw_input("[Q]uit / [L]og / Any key: ")
+    c = input("[Q]uit / [L]og / Any key: ")
     if c.lower() == 'q':
         break
     elif c.lower() == 'l':

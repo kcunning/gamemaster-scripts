@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 ''' A script to help run the downtime rules from Pathfinder 
 
 Official rules: 
@@ -39,40 +41,40 @@ def select_table(dir="tables"):
         if 'generic' in table:
             tables.remove(table)
     while True:
-        print "Select a table:"
+        print("Select a table:")
         for i in range(len(tables)):
-            print i, "-", tables[i]
-        c = raw_input("Num: ")
+            print(i, "-", tables[i])
+        c = input("Num: ")
         if not c.isdigit() or int(c) > len(tables) -1 or int(c) < 0:
-            print c, "is not valid."
+            print(c, "is not valid.")
         else:
             table = tables[int(c)]
             return "tables/" + table
 
 def print_row(row):
     tpl = "{min}-{max} {title}"
-    print tpl.format(
+    print(tpl.format(
         min=row['min'],
         max=row['max'],
-        title=row['title']),
+        title=row['title']),)
 
     if row['desc']:
-        print "--", row['desc']
+        print("--", row['desc'])
     else:
-        print 
+        print()
 
 def print_tsv(vals):
-    keys = vals[0].keys()
+    keys = list(vals[0])
     keys.extend(['influence bonus', 'capital bonus', 'labor bonus', 'other'])
-    print "\t".join(keys)
+    print("\t".join(keys))
     for val in vals:
         for key in keys:
             if key in val:
-                print val[key], " \t ",
-        print
+                print(val[key], " \t ",)
+        print()
 
 def get_event(table, val):
-    keys = table.keys()
+    keys = list(table)
     keys.sort()
     # Go until you find the min that's too much
     for i in range(len(keys)):
@@ -89,27 +91,27 @@ def check_event_type(table, i):
     pass
 
 def main():
-    print "Starting a new downtime session!"
+    print("Starting a new downtime session!")
     while True:
-        num = raw_input("How many days? ")
+        num = input("How many days? ")
         if not num.isdigit():
-            print num, "is not valid."
-            num = raw_input("How many days? ")
+            print(num, "is not valid.")
+            num = input("How many days? ")
         else:
             break
 
     days = []
     # filename = select_table()
     table = get_roll_table("tables/generic_building_events.txt")
-    print "What building type?"
+    print("What building type?")
     bfile = select_table()
     btable = get_roll_table(bfile)
     for i in range(int(num)):
-        print "Working on day", i + 1
+        print("Working on day", i + 1)
         r = randint(1, 101)
         e = get_event(table, r)
         if table[e]['title'].lower() == "building-specific event":
-            print "Building specific event..."
+            print("Building specific event...")
             r = randint(1, 101)
             e = get_event(btable, r)
             days.append(dict(btable[e]))
@@ -118,13 +120,13 @@ def main():
             print_row(btable[e])
             continue
         if table[e]['title'].lower() =="roll twice":
-            print "Rolling twice..."
+            print("Rolling twice...")
             for j in [1, 2]:
-                print "Roll", j
+                print("Roll", j)
                 r = randint(1, 101)
                 e = get_event(table, r) 
                 if table[e]['title'].lower() == "building-specific event":
-                    print "Building specific event..."
+                    print("Building specific event...")
                     r = randint(1, 101)
                     e = get_event(btable, r)
                     days.append(dict(btable[e]))
@@ -146,7 +148,7 @@ def main():
     return days
 
 results = main()
-print "*"*20
+print("*"*20)
 print_tsv(results)
 
 
