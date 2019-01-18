@@ -31,7 +31,6 @@ def get_top_three(stats):
 def get_potential_class(stats):
     ''' In theory, I should be able to suggest a class for the NPC
         based on their random stats.
-
         I got the stat suggestions from
         http://triangularroom.com/2015/09/30/pathfinder-for-beginners-ability-scores-by-class/
         
