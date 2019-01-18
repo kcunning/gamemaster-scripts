@@ -51,6 +51,18 @@ class Resident:
                 return names[i]
         return names[-1]
 
+    def get_race(self):
+        ''' Selects a random race for a resident.
+
+            These numbers are roughly pulled from r/VestOfHolding's work on 
+            how common certain races are in Golarion. I'm ignoring uncommon
+            races for now.
+        '''
+        races = ['dwarf', 'elf', 'gnome', 'half-elf', 'halfling', 'half-orc', 'human']
+        chances = [5, 4, 3, 3, 5, 1]
+
+        return self.get_random_group(races, chances)
+
     def get_ses_type(self):
         ''' Returns a random socioeconomic status.
         '''
@@ -165,6 +177,7 @@ class Resident:
         self.ses = self.get_ses_type()
         self.age = self.get_age_type()
         self.gender = self.get_random_group(['male', 'female', 'indeterminate'], [49, 49])
+        self.race = self.get_race()
         self.first_name, self.family_name = self.get_name()
         self.parents = [] # If a child is generated this way, they're an orphan
         self.spouse = None
