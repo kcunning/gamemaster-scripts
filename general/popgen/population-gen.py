@@ -381,6 +381,13 @@ class Town:
         sort the buildings into neighborhoods depending on the wealth level (SES)
         of the residents.
 
+        This class is also responsible for creating families. When a resident is
+        created, they are given a chance to have a spouse, as well as a chance
+        to have children (these are independent of each other). Residents are
+        more likely to marry those of their race. If they have children, they're
+        the appropriate race for their combination of races (some couples can have
+        no children).
+
     '''
     def get_random_group(self, names, chances):
         ''' Given a list of options and the chance for each, return one of the
@@ -409,10 +416,12 @@ class Town:
         ''' Given a single resident, generates a family for that resident.
 
             There is a 50/50 chance that the resident will be given a spouse.
-            Spouses have the same job as each other for now.
+            Spouses have the same job as each other for now. Spouses are more
+            likely to share a race.
 
             If the resident is an adult, they will be given somewhere between zero
-            and five children.
+            and five children. If their spouse isn't of a compatible race, though,
+            they will automatically have zero children.
 
             `t` is the type of 'child' the resident will be given. For now, 
             only adults can have children, and those children have the age type of
