@@ -129,16 +129,31 @@ class Resident:
         '''
         # DO NOT DO AS I DO, CHILDREN. GLOBALS ARE BAD.
         # Global brought in so that we only get the first names and such once.
-        if not 'first_names_f' in globals():
-            global first_names_f, first_names_m, surnames
-            first_names_f = self.get_lines('female_names.txt')
-            first_names_m = self.get_lines('male_names.txt')
-            surnames = self.get_lines('surnames.txt')
-        if self.gender == "female":
-            fn = choice(first_names_f)
+        if not 'resident_names' in globals():
+            global resident_names
+            resident_names = {}
+            for race in ['dwarf', 'elf', 'gnome', 'halfling', 'human', 'orc']:
+                # Get female names
+                fnames = self.get_lines(race + "_female_names.txt")
+                # Get male names
+                mnames = self.get_lines(race + "_male_names.txt")
+                # Get surnames
+                snames = self.get_lines(race + "_surnames.txt")
+                resident_names[race] = {
+                    "female": fnames,
+                    "male": mnames,
+                    "surname": snames
+                }
+
+        if 'half' in self.race:
+            brace = self.race.replace("half-", "")
         else:
-            fn = choice(first_names_m)
-        return fn, choice(surnames)
+            brace = self.race
+        if self.gender == "female":
+            fn = choice(resident_names[brace]["female"])
+        else:
+            fn = choice(resident_names[brace]["male"])
+        return fn, choice(resident_names[brace]["surname"])
 
     def get_job(self):
         ''' Returns a job based on `Resident.ses`. Requires SES being set.
