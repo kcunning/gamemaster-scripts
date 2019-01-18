@@ -146,7 +146,7 @@ class Resident:
                 }
 
         if 'half' in self.race:
-            brace = self.race.replace("half-", "")
+            brace = choice([self.race.replace("half-", ""), "human"])
         else:
             brace = self.race
         if self.gender == "female":
@@ -435,7 +435,8 @@ class Town:
                 'ses': r.ses, 
                 'family_name': r.family_name,
                 'job': r.job, # For now, assume they have the same job
-                'gender': gen}  
+                'gender': gen,
+                'race': r.race} # For now, no interspecies marriages  
             spouse = Resident(d)
             spouse.job = r.job
             fam.append(spouse)
@@ -457,7 +458,7 @@ class Town:
             return fam
 
         for i in range(n):
-            d = {'age': t}
+            d = {'age': t, 'race': r.race}
             # Assume the child has the same ses and family name as the parent
             if t == 'child':
                 d['ses'] = r.ses
@@ -555,14 +556,15 @@ class Town:
             not use the `csv` library. 
         '''
 
-        hc = ["First name", "Family name","Age","Gender","Business Name","Subtype", 
-            "Name", "SES", "Job", "Traits", "Sector"]
+        hc = ["First name", "Family name","Age","Gender","Race",
+            "Business Name","Subtype", 
+            "Building type", "SES", "Job", "Traits", "Sector"]
         rows = [hc]
 
         for s in self.sectors:
             for b in self.sectors[s]:
                 for r in b.residents:
-                    line = [r.first_name, r.family_name, r.age, r.gender, 
+                    line = [r.first_name, r.family_name, r.age, r.gender, r.race,
                         b.type, b.subtype, b.name, 
                         r.ses, r.job, ", ".join(r.traits).lower(), s]
                     rows.append(line)
