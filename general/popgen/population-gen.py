@@ -487,7 +487,8 @@ class Town:
         age = {}
         btypes = {}
         job = {}
-        fields = ['ses', 'age', 'job']
+        race = {}
+        fields = ['ses', 'age', 'job', 'race']
         for r in self.residents:
             for field in fields:
                 if not getattr(r, field) in locals()[field]:
@@ -500,6 +501,10 @@ class Town:
                 btypes[b.type] = 1
             else:
                 btypes[b.type] += 1
+
+        print("Races")
+        self.print_stat(race)
+        print()
 
         print("Wealth levels")
         self.print_stat(ses)
