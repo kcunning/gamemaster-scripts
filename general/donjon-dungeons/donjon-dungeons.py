@@ -102,6 +102,9 @@ def print_dungeon(lines):
                 print("  ", end="")
         print()
 
+def create_map_matrix(lines):
+    pass
+
 def create_map_image(lines, style="base"):
     imgdir = os.path.abspath("images/base/")
     outdir = os.path.abspath("output/")
@@ -111,7 +114,7 @@ def create_map_image(lines, style="base"):
     # Get the tiles
     tiles = {}
     for fn in png_files:
-        imgpath = os.path.abspath("images/base/" + fn)
+        imgpath = os.path.abspath("images/base2/" + fn)
         tiles[fn.split(".")[0]] = Image.open(imgpath)
 
     img_h = len(lines) * 40
@@ -126,12 +129,23 @@ def create_map_image(lines, style="base"):
             s = get_nsew(lines, r, c)
             x = c * 40
             y = r * 40
-            if s in tiles:
-                map_image.paste(tiles[s], (x, y))
+            off = 10
+            if s == "bg":
+                map_image.paste(tiles['bg'], (x-off, y-off))
             else:
-                map_image.paste(tiles['floor'], (x, y))
+                map_image.paste(tiles['floor'], (x-off, y-off))
             print(s, end="\t")
         print()
+
+    for r in range(len(lines)-1):
+        line = lines[r]
+        for c in range(len(line)-1):
+            s = get_nsew(lines, r, c)
+            x = c * 40
+            y = r * 40
+            off = 20
+            if "N" in s:
+                map_image.paste(tiles['N'], (x-off, y-off))
 
     map_image.save(os.path.abspath("output/test_image.png"), "PNG")
 
