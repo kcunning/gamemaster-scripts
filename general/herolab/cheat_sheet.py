@@ -3,6 +3,14 @@
 from xmljson import badgerfish as bf
 from xml.etree.ElementTree import fromstring
 
+''' Things to get:
+    * Their class
+    * What they're wearing
+    * Their attacks with all weapons on their person
+    * Saves
+    * AC / HP
+'''
+
 def get_data(fn):
     ''' Gets the data from a Hero Lab XML export
     '''
@@ -15,7 +23,6 @@ def get_data(fn):
     return d
 
 def find_armor(ch, t):
-    print(ch[t])
     if 'item' in ch[t]:
         for item in ch[t]['item']:
             if 'itemslot' in item:
@@ -40,7 +47,6 @@ def get_passive_vals(ch):
     a = find_armor(ch, "magicitems")
     if not a:
         a = find_armor(ch, "gear")
-    print(a)
     return {'skills': skd, 'saves': svd}
 
 
@@ -99,8 +105,16 @@ def get_char_vals(ch):
 
     return vals
 
-def print_sheet(lines):
-    pass
+def print_sheet(ch):
+    print(ch)
+    # Print combat stuff
+    tpl = "\t{name}:\
+        \t\t{atk} DMG: {dmg} Crit: {crit}"
+    for key in ch['combat']:
+        print(key)
+        for d in ch['combat'][key]:
+            print(d, key)
+            
 
 def main():
     d = get_data("sewer-foes.xml")
@@ -109,8 +123,7 @@ def main():
     for ch in chars:
         cheats.append(get_char_vals(ch))
 
-    for cheat in cheats:
-        print(cheat)
+    print_sheet(cheats[0])
         
 
 if __name__ == '__main__':

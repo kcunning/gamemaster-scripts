@@ -581,11 +581,12 @@ class Town:
                     line = [r.first_name, r.family_name, r.age, r.gender, r.race,
                         b.type, b.subtype, b.name, 
                         r.ses, r.job, ", ".join(r.traits).lower(), s]
+                    print("Appending", line)
                     rows.append(line)
         if fn == None:
             writer = csv.writer(sys.stdout, delimiter=delimeter)
         else:
-            f = open(fn, "w")
+            f = open(fn, "w", newline='')
             writer = csv.writer(f, delimiter=delimeter)
 
         for row in rows:
