@@ -9,19 +9,24 @@ from PIL import Image
 #  - Add door types to console
 #  - Corners?!
 
-def get_lines(fname):
+def get_lines(fname, delimiter="\t"):
+    ''' Gets the lines from a file and cleans them up.
+    '''
     lines = []
     with open(fname) as f:
-        reader = csv.reader(f, delimiter="\t")
+        reader = csv.reader(f, delimiter=delimiter)
         for line in reader:
             lines.append(line)
 
     return lines
 
 def get_door_char(lines, r, c):
-    # Doors we need
-    # - Room to N and S
-    # - Room to E and W
+    ''' Returns the correct character for a door
+
+        This is incomplete, since it just works with the console
+        output, and doesn't return anything special for special doors
+        (secret, locked, etc)
+    '''
     line = lines[r]
     prev_line = lines[r-1] if r != 0 else None
     next_line = lines[r+1] if r != len(lines) - 1 else None
@@ -42,10 +47,19 @@ def get_door_char(lines, r, c):
         return ns_door
     if east and west:
         return ew_door
-    
+
+    # Default door, just in case.
     return "++"
 
 def get_nsew(lines, r, c, t=""):
+    ''' Gets where we need walls. If the cell next to a target cell is blank,
+        then where they touch needs a wall.
+
+        Note: The order is always assumed to be NSEW, with letters removed
+        if you don't need that wall. NEW is fine. NWE will not work.
+
+        At the moment, `t` isn't used
+    '''
     prev_line = lines[r-1] if r != 0 else None
     next_line = lines[r+1] if r != len(lines) - 1 else None
     line = lines[r]
@@ -83,13 +97,16 @@ def get_nsew(lines, r, c, t=""):
 
 
 def get_floor(lines, r, c):
-
+    ''' Just a function to return the unicode characters for
+        the floor.
+    '''
     return "\N{FULL BLOCK}\N{FULL BLOCK}" 
 
 def print_dungeon(lines):
+    ''' Prints out the dungeon to the console.
+    '''
     for r in range(len(lines)):
         line = lines[r]
-        # print(line)
         for c in range(len(line)):
             s = line[c]
             if s=="F":
@@ -103,9 +120,28 @@ def print_dungeon(lines):
         print()
 
 def create_map_matrix(lines):
-    pass
+    ''' Creates a matrix out of the raw map data. Each cell contains what
+        sort of walls that square needs, or if it is a floor or background
+        square
+    '''
+    matrix = []
+    for r in range(len(lines)):
+        row = []
+        line = lines[r]
+        for c in range(len(line)):
+            s = get_nsew(lines, r, c)
+            row.append(s)
+        matrix.append(row)
+
+    return matrix
 
 def create_map_image(lines, style="base"):
+    ''' Creates an image based off of the TSV and outputs it to an output
+        folder.
+
+        TODO: Better output file name.
+        TODO: Actually use the style param
+    ''' 
     imgdir = os.path.abspath("images/base/")
     outdir = os.path.abspath("output/")
     files = os.listdir(imgdir)
@@ -121,12 +157,12 @@ def create_map_image(lines, style="base"):
     img_w = len(lines[0]) * 40
 
     map_image = Image.new("RGB", (img_w, img_h))
-    print(tiles)
 
+    # Lay down the walls
     for r in range(len(lines)-1):
         line = lines[r]
         for c in range(len(line)-1):
-            s = get_nsew(lines, r, c)
+            s = lines[r][c]
             x = c * 40
             y = r * 40
             off = 0
@@ -134,22 +170,45 @@ def create_map_image(lines, style="base"):
                 map_image.paste(tiles[s], (x-off, y-off))
             else:
                 map_image.paste(tiles['floor'], (x-off, y-off))
-            print(s, end="\t")
-        print()
 
-    # for r in range(len(lines)-1):
-    #     line = lines[r]
-    #     for c in range(len(line)-1):
-    #         s = get_nsew(lines, r, c)
-    #         x = c * 40
-    #         y = r * 40
-    #         off = 20
-    #         if "N" in s:
-    #             map_image.paste(tiles['N'], (x-off, y-off))
+    # Overlay the corners
+    for r in range(len(lines)-1):
+        line = lines[r]
+        for c in range(len(line)-1):
+            s = lines[r][c]
+            # if s != "floor":
+            #     continue
+            north = lines[r-1][c]
+            south = lines[r+1][c]
+            east = lines[r][c+1]
+            west = lines[r][c-1]
+
+            x = c * 40
+            y = r * 40
+            off = 0
+            # Check for the SE corner
+            if "E" in south and "S" in east:
+                map_image.paste(tiles['cSE'], (x, y), tiles['cSE'])
+            # Check for the NE corner
+            if "N" in east and "E" in north:
+                map_image.paste(tiles['cNE'], (x, y), tiles['cNE'])
+            # Check for the SW corner
+            if "S" in west and "W" in south:
+                map_image.paste(tiles['cSW'], (x, y), tiles['cSW'])
+            # Check for the NW corner
+            if "N" in west and "W" in north:
+                map_image.paste(tiles['cNW'], (x, y), tiles['cNW'])
 
     map_image.save(os.path.abspath("output/test_image.png"), "PNG")
 
+def main(fn="dungeon1.tsv", out="all"):
+    lines = get_lines(fn)
+    if out in ["all", "console"]:
+        print_dungeon(lines)
 
-lines = get_lines("dungeon1.tsv")
-print_dungeon(lines)
-create_map_image(lines)
+    if out in ["all", "image"]:
+        matrix = create_map_matrix(lines)
+        create_map_image(matrix)
+
+if __name__ == "__main__":
+    main()
