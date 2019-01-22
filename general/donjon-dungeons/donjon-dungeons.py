@@ -86,6 +86,24 @@ def get_nsew(lines, r, c, t=""):
     if line[c] and c != 0 and not line[c-1]:
         s += "W"
 
+    # Check for doors. Presume that there are no walls around doors
+    if line[c].startswith("D"):
+        if not prev_line or not next_line:
+            # If this is the first or last row, we can assume that it's an EW door
+            s = "dEW"
+
+        elif c == 0 or c == len(line) - 1:
+            s = "dNS"
+        else:
+            north = prev_line[c]
+            south = next_line[c]
+            east = line[c-1]
+            west = line[c+1]
+            if north and south:
+                s = "dNS"
+            if east and west:
+                s = "dEW"
+
     
 
     if line[c] and s == t:
@@ -200,6 +218,20 @@ def create_map_image(lines, style="base"):
             if "N" in west and "W" in north:
                 map_image.paste(tiles['cNW'], (x, y), tiles['cNW'])
 
+            # Do the whole thing again for the doors
+            if s == "dEW":
+                map_image.paste(tiles['cSE'], (x-40, y), tiles['cSE'])
+                map_image.paste(tiles['cNE'], (x-40, y), tiles['cNE'])
+                map_image.paste(tiles['cSW'], (x+40, y), tiles['cSW'])
+                map_image.paste(tiles['cNW'], (x+40, y), tiles['cNW'])
+
+            if s == "dNS":
+                map_image.paste(tiles['cSE'], (x, y-40), tiles['cSE'])
+                map_image.paste(tiles['cNE'], (x, y+40), tiles['cNE'])
+                map_image.paste(tiles['cSW'], (x, y-40), tiles['cSW'])
+                map_image.paste(tiles['cNW'], (x, y+40), tiles['cNW'])
+
+
     map_image.save(os.path.abspath("output/test_image.png"), "PNG")
 
 def main(fn="dungeon1.tsv", out="all"):
@@ -209,6 +241,7 @@ def main(fn="dungeon1.tsv", out="all"):
 
     if out in ["all", "image"]:
         matrix = create_map_matrix(lines)
+        print(matrix)
         create_map_image(matrix)
 
 if __name__ == "__main__":
