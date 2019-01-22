@@ -5,8 +5,9 @@ import csv, sys, os
 from PIL import Image
 
 # To do:
-#  - Add doors to image
+#  - Add door types to image
 #  - Add door types to console
+#  - Add stairs up and stairs down
 #  - Figure out what a room is, since tsv doesn't contain that
 #  - Populate the dungeon
 
@@ -88,23 +89,23 @@ def get_nsew(lines, r, c, t=""):
 
     # Check for doors. Presume that there are no walls around doors
     if line[c].startswith("D"):
+        dtypes = ['DT', 'DL', 'DST']
+        dtype = 'd' if not line[c] in dtypes else line[c].lower()
         if not prev_line or not next_line:
             # If this is the first or last row, we can assume that it's an EW door
-            s = "dEW"
+            s =  dtype + "EW"
 
         elif c == 0 or c == len(line) - 1:
-            s = "dNS"
+            s = dtype + "NS"
         else:
             north = prev_line[c]
             south = next_line[c]
             east = line[c-1]
             west = line[c+1]
             if north and south:
-                s = "dNS"
+                s = dtype + "NS"
             if east and west:
-                s = "dEW"
-
-    
+                s = dtype + "EW"
 
     if line[c] and s == t:
         s += "floor"
@@ -219,13 +220,13 @@ def create_map_image(lines, style="base"):
                 map_image.paste(tiles['cNW'], (x, y), tiles['cNW'])
 
             # Do the whole thing again for the doors
-            if s == "dEW":
+            if s.startswith('d') and s.endswith('EW'):
                 map_image.paste(tiles['cSE'], (x-40, y), tiles['cSE'])
                 map_image.paste(tiles['cNE'], (x-40, y), tiles['cNE'])
                 map_image.paste(tiles['cSW'], (x+40, y), tiles['cSW'])
                 map_image.paste(tiles['cNW'], (x+40, y), tiles['cNW'])
 
-            if s == "dNS":
+            if s.startswith('d') and s.endswith('NS'):
                 map_image.paste(tiles['cSE'], (x, y-40), tiles['cSE'])
                 map_image.paste(tiles['cNE'], (x, y+40), tiles['cNE'])
                 map_image.paste(tiles['cSW'], (x, y-40), tiles['cSW'])
