@@ -7,7 +7,8 @@ from PIL import Image
 # To do:
 #  - Add doors to image
 #  - Add door types to console
-#  - Corners?!
+#  - Figure out what a room is, since tsv doesn't contain that
+#  - Populate the dungeon
 
 def get_lines(fname, delimiter="\t"):
     ''' Gets the lines from a file and cleans them up.
