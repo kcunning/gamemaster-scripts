@@ -5,13 +5,13 @@ import csv, sys, os
 from PIL import Image
 
 # To do:
-#  - Add door types to console
 #  - Add stairs up and stairs down
 #  - Figure out what a room is, since tsv doesn't contain that
 #  - Populate the dungeon
 #  - Get image size from the actual image rather than hard-coding it
 #  - Fix the issue where we need a blank first and last row
 #  - A player map (don't show what doors are locked / trapped / secret / fine)
+#  - Command line options
 
 def get_lines(fname, delimiter="\t"):
     ''' Gets the lines from a file and cleans them up.
@@ -99,9 +99,13 @@ def get_nsew(lines, r, c, t=""):
     # Do we need a wall to the north?
     if line[c] and prev_line and not prev_line[c]:
         s += "N"
+    elif line[c] == "F" and not prev_line:
+        s += "N"
 
     # Do we need a wall to the south
     if line[c] and next_line and not next_line[c]:
+        s += "S"
+    elif line[c] == "F" and not next_line:
         s += "S"
 
     # Do we need a wall to the east?
@@ -204,9 +208,9 @@ def create_map_image(lines, style="base"):
     map_image = Image.new("RGB", (img_w, img_h))
 
     # Lay down the walls
-    for r in range(len(lines)-1):
+    for r in range(len(lines)):
         line = lines[r]
-        for c in range(len(line)-1):
+        for c in range(len(line)):
             s = lines[r][c]
             x = c * 40
             y = r * 40
@@ -217,16 +221,17 @@ def create_map_image(lines, style="base"):
                 map_image.paste(tiles['floor'], (x-off, y-off))
 
     # Overlay the corners
-    for r in range(len(lines)-1):
+    for r in range(len(lines)):
         line = lines[r]
-        for c in range(len(line)-1):
+        for c in range(len(line)):
             s = lines[r][c]
             # if s != "floor":
             #     continue
             north = lines[r-1][c]
-            south = lines[r+1][c]
-            east = lines[r][c+1]
             west = lines[r][c-1]
+            east = lines[r][c+1] if not c+1 == len(line) else ""
+            south = lines[r+1][c] if not r+1 == len(lines) else ""
+
 
             x = c * 40
             y = r * 40
