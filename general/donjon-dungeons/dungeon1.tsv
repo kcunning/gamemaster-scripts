@@ -4,7 +4,7 @@
 	F	F	F	F	F	DSL	F		F	F	F	F	F	F	F	F	F		F		F						F	
 	F	F	F	F	F		F		F	F	F	F	F	F	F	F	F		F		F						F	
 	F	F	F	F	F		F		F	F	F	F	F	F	F	F	F		F		F		F	F	F	F	F	
-	DT				DT		F				DT								F		F		F				F	
+	DL				DT		F				DT								F		F		F				F	
 	F	F	F		F		F	F	F		F	F	F		F	F	F	F	F		F		F				F	
 	F	F	F		F				F				F		DB				DB		F		F				F	
 	F	F	F		F		F	F	F	F	F		F		F	F	F	F	F		F		F				F	
@@ -19,7 +19,7 @@
 	F		F	F	F										DST													
 	F		F	F	F		F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F					
 	F		F	F	F		F																F					
-	F		F	F	F		F		SUU	SU	F	F	F	DR	F	F	F	F	F	F	F		F	F	F	F	F	
+	F		F	F	F		F		SUU	SU	F	F	F	DT	F	F	F	F	F	F	F		F	F	F	F	F	
 	F		F	F	F		F								F	F	F	F	F	F	F		F				F	
 	F		F	F	F		F	F	F	F	F	F	F		F	F	F	F	F	F	F		F	SD	SDD		F	
 	F		F	F	F								F		F	F	F	F	F	F	F						F	

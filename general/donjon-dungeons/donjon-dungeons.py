@@ -5,11 +5,13 @@ import csv, sys, os
 from PIL import Image
 
 # To do:
-#  - Add door types to image
 #  - Add door types to console
 #  - Add stairs up and stairs down
 #  - Figure out what a room is, since tsv doesn't contain that
 #  - Populate the dungeon
+#  - Get image size from the actual image rather than hard-coding it
+#  - Fix the issue where we need a blank first and last row
+#  - A player map (don't show what doors are locked / trapped / secret / fine)
 
 def get_lines(fname, delimiter="\t"):
     ''' Gets the lines from a file and cleans them up.
@@ -32,8 +34,25 @@ def get_door_char(lines, r, c):
     line = lines[r]
     prev_line = lines[r-1] if r != 0 else None
     next_line = lines[r+1] if r != len(lines) - 1 else None
+    door_types = ['DL', 'DST', 'DT']
+    doors = {
+        'DL_EW': "\N{LEFTWARDS ARROW FROM BAR}\N{RIGHTWARDS ARROW FROM BAR}",
+        'DL_NS': "\N{UPWARDS ARROW FROM BAR}\N{DOWNWARDS ARROW FROM BAR}",
+        'DST_NS': "\N{UPWARDS ARROW TO BAR}\N{DOWNWARDS ARROW TO BAR}",
+        'DST_EW': "\N{LEFTWARDS ARROW TO BAR}\N{RIGHTWARDS ARROW TO BAR}",
+        'DT_NS': "\N{WHITE FROWNING FACE}\N{UP DOWN ARROW}",
+        'DT_EW': "\N{WHITE FROWNING FACE}\N{LEFT RIGHT ARROW}",
+        'D_NS': "\N{UPWARDS ARROW}\N{DOWNWARDS ARROW}",
+        'D_EW': "\N{LEFTWARDS ARROW}\N{RIGHTWARDS ARROW}"
+    }
     ew_door = "\N{LEFTWARDS ARROW}\N{RIGHTWARDS ARROW}"
     ns_door = "\N{UPWARDS ARROW}\N{DOWNWARDS ARROW}"
+    secret_ew = "\N{LEFTWARDS ARROW TO BAR}\N{RIGHTWARDS ARROW TO BAR}"
+    secret_ns = "\N{UPWARDS ARROW}\N{DOWNWARDS ARROW}"
+    trap_ew = "\N{LEFTWARDS ARROW}\N{RIGHTWARDS ARROW}"
+    trap_ns = "\N{UPWARDS ARROW}\N{DOWNWARDS ARROW}"
+    locked_ew = "\N{LEFTWARDS ARROW}\N{RIGHTWARDS ARROW}"
+    locked_ns = "\N{UPWARDS ARROW}\N{DOWNWARDS ARROW}"
     if not prev_line or not next_line:
         # If this is the first or last row, we can assume that it's an EW door
         return ew_door
@@ -45,10 +64,16 @@ def get_door_char(lines, r, c):
     south = next_line[c]
     east = line[c-1]
     west = line[c+1]
+    
+    if line[c] in door_types:
+        dt = line[c]
+    else:
+        dt = 'D'
+
     if north and south:
-        return ns_door
+        return doors[dt + "_NS"]
     if east and west:
-        return ew_door
+        return doors[dt + "_EW"]
 
     # Default door, just in case.
     return "++"
