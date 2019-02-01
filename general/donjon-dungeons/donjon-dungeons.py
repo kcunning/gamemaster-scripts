@@ -9,7 +9,6 @@ from PIL import Image
 #  - Figure out what a room is, since tsv doesn't contain that
 #  - Populate the dungeon
 #  - Get image size from the actual image rather than hard-coding it
-#  - Fix the issue where we need a blank first and last row
 #  - A player map (don't show what doors are locked / trapped / secret / fine)
 #  - Command line options
 
@@ -265,7 +264,7 @@ def create_map_image(lines, style="base"):
 
     map_image.save(os.path.abspath("output/test_image.png"), "PNG")
 
-def main(fn="dungeon1.tsv", out="all"):
+def main(fn="sewer.txt", out="all"):
     lines = get_lines(fn)
     if out in ["all", "console"]:
         print_dungeon(lines)

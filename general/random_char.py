@@ -1,4 +1,7 @@
-from random import shuffle
+from random import shuffle, choice
+
+# TODO:
+# * Add command line opts to send in race, stat
 
 def get_random_stats(arr):
     ''' Given a list of numbers (n=6), returns a dictionary of random stats. 
@@ -100,6 +103,39 @@ def get_potential_class(stats):
                     results['partial'].append(name)
     return results
 
+def apply_racial_mods(stats, race=None, stat=None):
+    ''' Get the stats for a character after racial mods
+        
+        If the race is human, half-orc, or half-elf and a stat
+        is sent, increase that stat by two. Otherwise, 
+        increase a random stat.
+
+        If no race is selected, just send back the stats
+    '''
+    # Human, half-elf, half-orc, elf, gnome, halfling, dwarf
+    if not race:
+        return stats
+
+    mods = {
+        "elf": {"DEX": 2, "INT": 2, "CON": -2},
+        "gnome": {"CON": 2, "CHA": 2, "STR": -2},
+        "dwarf": {"CON": 2, "WIS": 2, "CHA": -2},
+        "halfling": {"DEX": 2, "CHA": 2, "STR": -2}
+    }
+
+    any_races = ["human", "half-elf", "half-orc"]
+
+    if race in any_races and stat:
+        mods[race] = {stat: 2}
+    elif race in any_races:
+        s = choice(["STR", "DEX", "CON", "INT", "WIS", "CHA"])
+        mods[race] = {s: 2}
+
+    for sname in mods[race]:
+        stats[sname] += mods[race][sname]
+
+    return stats
+
 def print_results(stats, cldict):
     ''' Prints out the stats and potential classes all nice like.
     '''
@@ -126,6 +162,8 @@ def main():
     # one partial match or one exact match
     while True:
         stats = get_random_stats(basic_arr)
+
+        stats = apply_racial_mods(stats, "human")
 
         results = get_potential_class(stats)
 
