@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    
+  input {
+    border: 1px solid black;
+  }
+  </style>
+  <script type="text/javascript">
+
+    function calc() {
+      // Get the character stuff
+      hero_hp = 0;
+      hero_dmg = 0;
+
+      for (var i=0; i < chars.length; i++) {
+        console.log(chars[i], chars[i].value)
+        if (chars[i].name == "hp" & chars[i].value != "") {
+          hero_hp += parseInt(chars[i].value, 10)
+        }
+        if (chars[i].name == "dmg" & chars[i].value != "") {
+          hero_dmg += parseInt(chars[i].value, 10)
+        }
+      }
+
+      // Get the mob stuff
+
+      mob_hp = 0;
+      mob_dmg = 0;
+
+      for (var i=0; i < mobs.length; i++) {
+        console.log(mobs[i], mobs[i].value)
+        if (mobs[i].name == "hp" & mobs[i].value != "") {
+          mob_hp += parseInt(mobs[i].value, 10)
+        }
+        if (mobs[i].name == "dmg" & mobs[i].value != "") {
+          mob_dmg += parseInt(mobs[i].value, 10)
+        }
+      }
+
+      var s = document.querySelector("span#PCvMob")
+      s.textContent = hero_dmg * 3 + " / " + mob_hp; 
+
+      var s2 = document.querySelector("span#MobvPC")
+      s2.textContent = mob_dmg * 3 + " / " + hero_hp; 
+
+      console.log(hero_hp, hero_dmg, mob_hp, mob_dmg)
+    }
+
+    function add_row(name) {
+      f = document[name];
+      s = f.querySelector('span');
+      v = s.cloneNode(true);
+      f.append(v)
+    }
+
+
+  </script>
+</head>
+<body>
+  <h1>Alternative CR generator</h1>
+
+  <p>The basic premise: The mobs should be able to take out the heroes in five turns. The heroes should be able to take out the mobs in three turns.</p>
+
+  <form name="chars">
+    <h2>Characters</h2>
+    <span>HP: <input type="text" name="hp"> / DMG per round: <input type="text" name="dmg"><br></span>
+    <span>HP: <input type="text" name="hp"> / DMG per round: <input type="text" name="dmg"><br></span>
+    <span>HP: <input type="text" name="hp"> / DMG per round: <input type="text" name="dmg"><br></span>
+  </form>
+  <button onclick="add_row('chars')">Add hero row</button>
+
+  <form name="mobs">
+    <h2>Enemies</h2>
+    <span>HP: <input type="text" name="hp"> / DMG per round: <input type="text" name="dmg"><br></span>
+    <span>HP: <input type="text" name="hp"> / DMG per round: <input type="text" name="dmg"><br></span>
+    <span>HP: <input type="text" name="hp"> / DMG per round: <input type="text" name="dmg"><br></span>
+  </form>
+  <button onclick="add_row('mobs')">Add enemy row</button>
+  <br>
+  <button onclick="calc()">Compare</button>
+
+  <h2>Results</h2>
+  <p>PC damage vs Enemy HP: <span id="PCvMob"></span></p>
+  <p>Enemy damage vs PC HP: <span id="MobvPC"></span></p>
+</body>
+</html>
