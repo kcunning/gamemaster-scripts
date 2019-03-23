@@ -7,6 +7,7 @@
   input {
     border: 1px solid black;
   }
+
   </style>
   <script type="text/javascript">
 
@@ -41,7 +42,15 @@
       }
 
       var s = document.querySelector("span#PCvMob")
-      s.textContent = hero_dmg * 3 + " / " + mob_hp; 
+      s.textContent = hero_dmg * 3 + " / " + mob_hp;
+      s.textContent += " (" + hero_dmg * 3 / mob_hp + ")";
+      if ( hero_dmg / mob_hp <= 1 && hero_dmg / mob_hp >= .75) {
+        s.style = "color: darkred"
+      } else if (hero_dmg / mob_hp > 1.25) {
+        s.style = "color: green"
+      } else {
+        s.style = "color: blue"
+      }
 
       var s2 = document.querySelector("span#MobvPC")
       s2.textContent = mob_dmg * 3 + " / " + hero_hp; 
