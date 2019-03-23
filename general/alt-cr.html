@@ -11,6 +11,16 @@
   </style>
   <script type="text/javascript">
 
+    function getStyle(ratio, s) {
+      if (ratio <= 1.2 && ratio >= 0.8) {
+        s.style = "color: blue"
+      } else if (ratio > 1.2) {
+        s.style = "color: green"
+      } else if (ratio < 0.8 ) {
+        s.style = "color: red"
+      }
+    }
+
     function calc() {
       // Get the character stuff
       hero_hp = 0;
@@ -55,7 +65,7 @@
       var s2 = document.querySelector("span#MobvPC")
       s2.textContent = mob_dmg * 3 + " / " + hero_hp; 
 
-      console.log(hero_hp, hero_dmg, mob_hp, mob_dmg)
+
     }
 
     function add_row(name) {
@@ -92,7 +102,7 @@
   <button onclick="calc()">Compare</button>
 
   <h2>Results</h2>
-  <p>PC damage vs Enemy HP: <span id="PCvMob"></span></p>
+  <p>PC damage vs Enemy HP: <span id="PCvMob"></span> <span id="PCvMobRatio"></span></p>
   <p>Enemy damage vs PC HP: <span id="MobvPC"></span></p>
 </body>
 </html>
