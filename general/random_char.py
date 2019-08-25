@@ -19,7 +19,7 @@ def get_random_stats(arr):
 def get_top_three(stats):
     ''' Returns the highest three stats from the stats dict
     '''
-    v = stats.values()
+    v = list(stats.values())
     v.sort()
     v.reverse()
 
@@ -139,18 +139,18 @@ def apply_racial_mods(stats, race=None, stat=None):
 def print_results(stats, cldict):
     ''' Prints out the stats and potential classes all nice like.
     '''
-    print "STR: {STR} DEX: {DEX} CON: {CON}".format(**stats)
-    print "INT: {INT} WIS: {WIS} CHA: {CHA}".format(**stats)
-    print "Classes with exact matches:"
+    print("STR: {STR} DEX: {DEX} CON: {CON}".format(**stats))
+    print("INT: {INT} WIS: {WIS} CHA: {CHA}".format(**stats))
+    print("Classes with exact matches:")
     if not cldict['exact']:
-        print "\tNone"
+        print("\tNone")
     else:
-        print "\t" + ", ".join(cldict['exact'])
-    print "Classes with partial matches:"
+        print("\t" + ", ".join(cldict['exact']))
+    print("Classes with partial matches:")
     if not cldict['partial']:
-        print "\tNone"
+        print("\tNone")
     else:
-        print "\t" + ", ".join(cldict['partial'])
+        print("\t" + ", ".join(cldict['partial']))
 
 def main():
     ''' The meat and potatoes. For now, just sends the basic array.
@@ -163,7 +163,7 @@ def main():
     while True:
         stats = get_random_stats(basic_arr)
 
-        stats = apply_racial_mods(stats, "human")
+        stats = apply_racial_mods(stats, "half-orc")
 
         results = get_potential_class(stats)
 

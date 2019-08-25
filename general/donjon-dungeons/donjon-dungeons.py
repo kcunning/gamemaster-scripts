@@ -181,6 +181,7 @@ def create_map_matrix(lines):
             row.append(s)
         matrix.append(row)
 
+    print(matrix)
     return matrix
 
 def create_map_image(lines, style="base"):
@@ -264,7 +265,7 @@ def create_map_image(lines, style="base"):
 
     map_image.save(os.path.abspath("output/test_image.png"), "PNG")
 
-def main(fn="sewer.txt", out="all"):
+def main(fn="dungeon1.tsv", out="all"):
     lines = get_lines(fn)
     if out in ["all", "console"]:
         print_dungeon(lines)

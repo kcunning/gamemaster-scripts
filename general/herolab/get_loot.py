@@ -30,7 +30,7 @@ def print_char_loot(loot, d):
         print(d.join(map(str, item)))
 
 def main(fn):
-    f = open(fn)
+    f = open(fn, errors='replace')
     lines = f.readlines()
     s = "".join(lines)
     d = bf.data(fromstring(s))
@@ -59,4 +59,4 @@ def main(fn):
 
     print_char_loot(items, "\t")
 
-main('walcourt.xml')
+main('devils.xml')
