@@ -93,11 +93,10 @@ function rollSim() {
 function doRolls() {
     // reset the table
     table = document.getElementById('results');
-    if (table.tBodies[0].childElementCount != 1) {
-        for (var i=1; i< 20; i++) {
-           table.deleteRow(-1)
-        }    
-    }
+    n = table.tBodies[0].childElementCount;
+    for (var i=1; i<n ; i++) {
+       table.deleteRow(1)
+    }    
     
     // Do the rolls
     for (var i=0; i <= 20; i++) {
