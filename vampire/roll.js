@@ -55,12 +55,22 @@ function rollSim(dice, dc, hunger=1, runs=100) {
     		wins += 1;
     	}
     }
-    console.log("Wins", wins, "out of", runs)
+    console.log("Wins", wins, "out of", runs);
+    var table = document.getElementById("results");
+    var newRow = table.insertRow();
+    var newCell = newRow.insertCell();
+    newCell.innerText = wins + " / " + runs;
+    var newCell = newRow.insertCell();
+    newCell.innerText = "NA";
+    var newCell = newRow.insertCell();
+    newCell.innerText = "NA";
+    var newCell = newRow.insertCell();
+    newCell.innerText = "NA";
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  let btn = document.getElementById('rollBtn')
-  btn.onclick = rollSim
+  let btn = document.getElementById('rollBtn');
+  btn.onclick = rollSim;
 });
 
 
