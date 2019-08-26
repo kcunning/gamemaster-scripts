@@ -24,9 +24,11 @@ function getTotalSuccesses(crit, normal) {
 	return total
 }
 
-function rollSim(dice, dc, hunger=1, runs=100) {
-    dice = document.getElementById('dice').value
-    dc = document.getElementById('dc').value
+function rollSim() {
+    dice = document.getElementById('dice').value;
+    dc = document.getElementById('dc').value;
+    hunger = document.getElementById('hunger').value;
+    runs = 100;
 
 	wins = 0;
 	warr = []
@@ -50,27 +52,62 @@ function rollSim(dice, dc, hunger=1, runs=100) {
     		c--;
     		r++;
     	}
+
+        // Successes
     	total = getTotalSuccesses(c, r);
     	if (total >= dc) {
-    		wins += 1;
+    		wins++;
     	}
+
+        // Critical wins
+        if (total >= dc & c > 0) {
+            crit++;
+        }
+
+        // The next two checks involve hunger dice. We assume that
+        // the first X dice are the hunger dice.
+        var hdice = roll.slice(0, hunger);
+
+        // Messy crits
+        if (hdice.includes(2) & c > 0 & total >= dc) {
+            messy++;
+        }
+        // Bestial failures
+        if (hdice.includes(-1) & total < dc) {
+            bestial++;
+        }
     }
-    console.log("Wins", wins, "out of", runs);
+
     var table = document.getElementById("results");
     var newRow = table.insertRow();
     var newCell = newRow.insertCell();
     newCell.innerText = wins + " / " + runs;
     var newCell = newRow.insertCell();
-    newCell.innerText = "NA";
+    newCell.innerText = crit + " / " + runs;
     var newCell = newRow.insertCell();
-    newCell.innerText = "NA";
+    newCell.innerText = messy + " / " + runs;
     var newCell = newRow.insertCell();
-    newCell.innerText = "NA";
+    newCell.innerText = bestial + " / " + runs;
+}
+
+function doRolls() {
+    // reset the table
+    table = document.getElementById('results');
+    if (table.tBodies[0].childElementCount != 1) {
+        for (var i=1; i< 20; i++) {
+           table.deleteRow(-1)
+        }    
+    }
+    
+    // Do the rolls
+    for (var i=0; i <= 20; i++) {
+        rollSim();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let btn = document.getElementById('rollBtn');
-  btn.onclick = rollSim;
+  btn.onclick = doRolls;
 });
 
 
