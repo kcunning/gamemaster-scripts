@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en>
+<head>
+	<title>Vampire roll probability</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="advance.js"></script>
+	<style type="text/css">
+		table, td {
+			border: 1px solid black;
+		}
+		td {
+			padding: .5em;
+		}
+
+		button {
+			background: darkred;
+			color: white;
+			border-radius: 5px;
+			padding: .5em;
+			margin: 1em;
+		}
+
+		input, label {
+			margin: .5em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Vampire the Masquerade (v5) Advancement Calculator</h1>
+		<p>Plug in the number of XP you have to spend below, and get a list of what you can buy. This is approximately 10% easier than just doing it in your head.</p>
+
+		<label for="xp">XP</label><input type="number" name="xp">
+		<table id="results">
+			<tr>
+				<td>Type</td><td>Level</td><td>Cost</td><td># you can buy</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>
