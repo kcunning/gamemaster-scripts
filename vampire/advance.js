@@ -27,10 +27,6 @@ function calcXP(xp) {
         ["Blood Potency (10 per level)", mult(xp,10, levels=[...Array(12).keys()].slice(1,12))],
 	]
 
-	for (i in costs) {
-		console.log(costs[i][0], costs[i][1])
-	}
-
 	return costs
 }
 
