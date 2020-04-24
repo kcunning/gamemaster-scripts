@@ -1,0 +1,207 @@
+Arcantric Accuracy
+You sap a fraction of the magical energies around you to make your attacks more precise. Prerequisites: 6th level Benefit: You gain a +2 feat bonus to attack rolls. Whenever you become the target of a spell or spell-like ability, this bonus increases by +1 until the end of the [Round], to a maximum of +5.
+
+Baptized In Rage
+You can conjure up the aether to hinder your opponents. Prerequisites: 9th level Benefit: Three times per [Scene], as an immediate action, all opponents within a 100 ft radius are [Entangled] for one [Round] by chains of aether. A successful Fortitude save (DC 10 + ½ your level + your KOM) negates the [Entangled] condition. This is a supernatural ability.
+
+Battleforged
+In an immensely painful operation, you were turned into a true killing machine. Benefit: You have armor and a weapon built into your body. You gain a permanent +2 item bonus to Armor Class, and gain your choice of a Melee or Ranged natural weapon with three weapon properties of your choice other than [Barbed] or [Quick-draw].
+
+Bravado
+You compensate for your recklessness in battle with an unshakable confidence that keeps you going. Prerequisites: Reaver
+Benefit: Reaver can now grant bonuses up to +5. As an immediate action, you may lower that bonus by a point or even take a penalty, to a minimum of -2, to heal yourself by three times your KDM.
+
+Breakneck Pace
+You can get around the battlefield with great speed. Benefit: Your gain a +15 ft bonus to your movement speed.
+
+By Will Sustained
+You can exist on spiritual energy alone. Benefit: You no longer need food or water (or whatever nourishment you normally require), and gain [Immunity] to [Sickened]. At 10th level, you no longer need to sleep, you are not affected by Suffocation, and gain [Immunity] to the [Nauseated] condition.
+
+Chatty Bugger
+Your conversational skills may not be particularly smooth, but at least you are very persistent. Prerequisites: 6th level Benefit: You are able to acquire a new language after only a few days of exposure, and gain the ability to converse freely with just about anything of at least animal intelligence. This does not extend to mindless or deeply alien creatures.
+Further, the DC of social skill checks made against you increases by 1.
+
+Cheerful Hemoglobin
+Your blood is quite happy where it is. Prerequisites: 6th level Benefit: You gain [Fast healing] 5, and [Immunity] to [Bleeding].
+
+Damage Specialization
+Your combat style emphasizes powerful blows. Prerequisites: 6th level Benefit: Whenever you deal damage with an attack, you deal additional damage with the [Precision] descriptor equal to your KOM.
+
+Drink Deep
+You have fully mastered the mysterious powers of the legendary Drunken Monks. Prerequisites: 12th level, Livers Need Not Apply Benefit: As a swift action, up to twice per [Encounter], you may spend up to 3 drinks from the Livers Need Not Apply feat on that feat's effect or the effects of any feats for which the Livers Need Not Apply feat is a prerequisite, dividing the drinks as you choose between any feats you possess.
+
+Elemental Specialization
+You are skilled at using elemental magic to destroy your enemies. Prerequisites: Spellcasting track Benefit: Spells you cast that deal elemental damage deal additional elemental damage equal to your character level. This does not include spells that only add bonus damage.
+
+Esoteric Adept
+You understand the importance of having a versatile set of spells, and have studied a wide variety of sources to expand your knowledge. Prerequisites: 6th level, spellcasting track Benefit: You may choose a single spell up to one circle lower than your highest circle in a spellcasting track from any casting list and add it to your list of spells known for a single spellcasting track. This choice is permanent.
+Special: You may take this feat multiple times. Each time, you choose a different spell.
+
+Exit, Stage Left
+A swift flanking maneuver or escape is a powerful asset in combat. Prerequisites: 1st level only Benefit: Once per [Encounter], you may trade a swift action for a move action. At 9th level, you may use this one additional time per [Encounter].
+
+Feign Death
+You learn to "play dead", but with such precision and skill that you can fool even the keenest eye. Prerequisites: 1st or 3rd level only Benefit: As an immediate action, you may attempt to convince all observers that you are [Dead]. You enter a state where it is very difficult to establish your life-signs, but you remain conscious. This effect has a duration of two minutes per character level, and you also fool Divination effects of 4th circle or lower. When this state is ended, you cannot attempt it again for 5 minutes.
+
+Floating Feat
+You have a flexible mind that lets you come up with one surprising technique after another. Prerequisites: 3rd level only Benefit: Select one of your other feats that you did not gain from an item, other than the Guild Initiation feat. You lose that feat, and replace it with an empty feat slot. At the beginning of each [Scene], you may pick any feat you qualify for to fill that slot, other than the Guild Initiation feat, as though you had just gained a new feat from leveling up. You must still meet all qualifications for your new feat, you lose the feat that previously filled that slot, and any old feats that you cease to qualify for become inactive. Inactive feats no longer give their benefit and do not qualify you for other feats until you once again qualify for them.
+At 12th level, you may choose a second feat you possess that you did not gain from this feat or an item other than the Guild Initiation feat and replace it with a second feat slot. You may pick a feat to fill each slot at the beginning of each [Scene]. You must still meet all qualifications for any feats you pick this way.
+
+Glyphweave Adept
+Spells you cast have fundamentally different appearances, but the changes also extend all the way down into how and what you cast. Prerequisites: Spellcasting track Benefit: Whenever you cast a spell using a spell slot of a higher circle than the spell's circle, you treat that spell as if it were an effect of the circle of that spell slot. In addition, Arcana checks made to identify your spells have their DCs increased by +5.
+
+Into The Breach
+You can strategically position your allies. Prerequisites: Shadow Blink or The Sky Empties Benefit: As a standard action, you may [Teleport] one other ally within [Close] range up to your [Close] range in any direction from their current position. If this would place them within their [Melee] range of an opponent, that ally may take a single attack action.
+
+Livers Need Not Apply
+Prolonged drinking has inexplicably altered your body to gain strength from alcohol. Prerequisites: Constitution 14, must not possess The Bitter Dregs Benefit: You no longer suffer any negative effects from drinking alcohol, and can consume one drink as a move action. In fact, you can store two drinks inside you for future use, and one additional drink for each point of Constitution modifier you possess. You may, at any time, expend one of these stored drinks as a move action. Doing so allows you to recover 1d4 HP per character level.
+
+Guild Initiation
+Affiliation with an organization offers you the prospect of learning different abilities. Benefit: You may exchange one of your tracks for another track, as per multiclassing. This swap is retroactive, and so replaces abilities you have already acquired. If this swap makes you ineligible for any feats or simply renders a feat irrelevant, you may retrain these feats. You cannot exchange a racial track if you also have its associated racial class statistics. Special: You may take this feat with your Racial feat slot, regardless of what race you are.
+
+Manyspell Magus
+You can break down spells into their very essence, and recombine them into new magical effects. Prerequisites: Glyphweave Adept, 9th level Benefit: As a swift action, you may spend a spell slot of any circle and gain spell points equal to twice that circle, which last until spent or until the end of the [Scene]. Instead of expending a spell slot, you may spend one point per circle of the spell you wish to cast in order to cast it. Spells cast this way can never be of a higher circle than what you could have have cast 5 character levels ago.
+
+Multiclass Flexibility
+You have an unusual combination of abilities. Prerequisites: Must have multiclassed, taken Guild Initiation, or taken the Full Buy-In option Benefit: Select a new ability score for calculating the benefits from all circles of one of your tracks. For example, a tactician who gained the shaman's Spellcasting track could take this feat and base all aspects of the shaman's Spellcasting track on Intelligence rather than Wisdom. Special: You may take this feat with your Racial feat slot, regardless of what race you are.
+
+My Shadow Grows Long
+Your shadow possesses an unnaturally geometrical bent, and the hard lines of your silhouette stretch out to bizarre lengths. Prerequisites: The Sun Grows Dim Benefit: By giving substance and direction to your distended shadow, you may yet reach your victims. Once per [Round], when you would make a melee attack, you may make that same attack as a ranged attack at up to [Close] range that does not provoke attacks of opportunity instead. At 10th level, you may use this ability twice per [Round].
+
+Objective Analysis
+It’s an object, alright?
+Prerequisites: GM Approval. Ask first. Nicely.
+Benefit: By examining an object for 5 minutes, you may perform a minor divination regarding the recent history of the object. You gain access to information about what the object was used for within the last 45 minutes, with a fair level of detail. At 3rd level, your visions stretch back 2 hours. At 6th level, you gain detailed information about the last 15 minutes, and a fair amount of detail about the last 4 hours. At 9th level, you gain perfect clarity regarding the last 15 minutes, detailed information about the last 30 minutes, and a solid idea of the last 12 hours. At 12th level, you may instead opt for a brief history of the object's last 4 years, containing little more than a name or three, and any truly important events it was involved in.
+
+Open Greater Binding
+Your powerful essence allows you to attune to an additional magic item of even greater power. Prerequisites: Open Lesser Binding, 12th level Benefit: You can equip an additional Greater item.
+
+Open Lesser Binding
+Through wealth, personal power, or crafting knowledge, you have acquired an additional magic item you can attune to. Benefit: You can equip an additional Lesser item.
+
+Optimistic Viscera
+Your interior portions are sure today is going to be a good day. Benefit: You gain 1 additional HP per level and a +1 feat bonus to all saving throws.
+
+Objective Analysis
+It's an object, alright? Prerequisites: GM Approval. Ask first. Nicely. Benefit: By examining an object for 5 minutes, you may perform a minor divination regarding the recent history of the object. You gain access to information about what the object was used for within the last 45 minutes, with a fair level of detail. At 3rd level, your visions stretch back 2 hours. At 6th level, you gain detailed information about the last 15 minutes, and a fair amount of detail about the
+
+Reaver
+Your bloodlust is intoxicating, spurring you on to claim more lives with every kill you make. Prerequisites: Must not possess Livers Need Not Apply Benefit: You gain a +1 bonus to attack rolls and armor class for every enemy whom you have killed in the current [Encounter]. This bonus can never exceed +4. Creatures who are more than three levels lower than you do not count.
+
+Recon
+You are never caught completely unawares. Benefit: At the beginning of each [Encounter], before the first [Round], each ally may make a 5 ft step, even if that ally is surprised. At 6th level, this increases to two 5 ft steps for you only.
+
+Reprisal
+Seeing your allies injured fills you with anger. Prerequisites: Reaver Benefit: You are healed twice your character level whenever an ally other than you is dropped below half their maximum hit points. When this occurs, your bonus from Reaver increases by +1 as though you had slain an opponent. This feat can only trigger four times per [Encounter].
+
+Ruinous Charge
+Walls are merely a distraction that you have learned to ignore. Prerequisites: 12th level, Strength as KOM or KDM, GM Approval (Ask first. Nicely) Benefit: You can use the Charge combat maneuver to barrel straight through most mundane material in the way of your movement, up to iron and lowgrade steel (this does not include creatures and their equipment), leaving a shattered mess behind you. A hole is left behind you that anyone of your size or smaller could move through.
+In addition, you gain the Burrow movement mode.
+
+Rune Magic
+You have learned the ancient written magic of the dwarves. Prerequisites: Spellcasting track Benefit: As a standard action, if you do not already have an active spelltrap spread, or if you are 10th level or higher and have no more than one active spelltrap spread, you may spend a spell slot of any circle. If you do, choose a spell you know of that circle or lower. Make all decisions for that spell as if you had cast the spell, except if that spell targets one or more creatures or squares, do not decide its targets at this time. You create a 10 ft radius spelltrap spread originating from an adjacent square of your choice, which lasts and remains active until it is discharged. This counts as casting a spell for the purposes of provoking attacks of opportunity.
+When an opponent begins its turn in or enters the spread, you may cast the chosen spell without provoking attacks of opportunity and without spending a spell slot as though you occupied a square of your choice in the spread, using the decisions you made for when you created the spread, and the spread is discharged. If that spell targets one or more creatures or squares, you decide its targets at this time, with the following exceptions: if the spell targets one or more creatures, you must choose the opponent that triggered your spread as a target of the spell if possible; and if the spell targets one or more squares, you must choose one square that opponent occupies as a target of the spell if possible. This spread may be detected or disarmed as if it were a trap with an EL equal to your level.
+
+Senseshift Adept
+Your senses are atypical and not easily dulled. The ability to manipulate them comes naturally to you. Benefit: You can manipulate your senses. This might allow you to peer around a corner with your fingertips, examine the inside of a lock with your hairs, listen with your feet, taste things you touch with your palms, or manipulate any other sense you would normally have.
+In addition, you gain [Immunity] to [Dazzled] and [Deafened] and a +2 feat bonus to Awareness.
+At 8th level, you gain [Immunity] to [Blinded] unless you possess the Justice, Blind feat or other abilities that require you to stay [Blinded].
+
+Senseshift Magus
+You have solved the age-old problem of what to do with the person you've disguised yourself as. Prerequisites: 6th level, Senseshift Adept Benefit: As a standard action, you may swap locations and appearances with an unwilling target within [Close] range. A successful Will save (DC 10+ ½ your level + your KOM) negates this effect. This is a spell-like ability and a [Teleport] effect, and may only be used once per [Scene]. The alteration of appearance lasts until the end of the [Scene], and is perfectly exact and entirely cosmetic. You cannot target creatures more than two size categories larger than you with this ability.
+
+Seven Drunken Immortals
+You gain the ability to summon the healing spirits of spirits. Prerequisites: Livers Need Not Apply Benefit: As a move action, you may spend three drinks from the Livers Need Not Apply feat to heal each ally within [Close] range 1d4+1 HP per character level you possess.
+
+Small Concessions
+You are a shrewd negotiator who can turn compromises to your advantage. Benefit: Once per social encounter, you may grant all involved parties a single token each.
+
+Slow and Steady
+You are exceptionally stable on your feet, and can regain your footing after a momentary stumble. Prerequisites: 1st level only Benefit: If you would suffer the [Prone] condition, you may instead suffer a penalty equal to half of your movement speed to your movement speed for one [Round].
+
+Spirited Strength
+That which does not kill you only makes you stronger. Prerequisites: Livers Need Not Apply, 9th level Benefit: As a swift action, you may spend a drink from the Livers Need Not Apply feat to gain a +1 fury bonus to attack and damage rolls, which stacks with itself, up to a maximum of +5. The bonus does not stack with other fury bonuses, and lasts until the end of the [Encounter].
+
+Summon Mote
+A tiny companion assists you in your adventures. Benefit: You are followed at all times by a mote: a tiny, cheerful, malevolent spirit of your own devising. Once per [Round], as a free action, if you and the mote have line of effect to target square, you may move the mote to target square within 80 ft of you. You gain line of sight from the mote's square. Whenever you are further than 80 ft away from the mote, it instantly disappears and reappears in an adjacent square of your choice. As a move action, part of a move action, or swift action, if the mote is within your [Melee] range of a weapon that is not wielded or otherwise carried by a creature, you may pick it up and switch to that weapon without provoking an attack of opportunity.
+At 4th level, your mote begins each [Encounter] with 15 mote points. As an immediate action, as long as the mote has 1 or more mote points, you may subtract a number of mote points from the mote and heal HP equal to that amount.
+At 8th level, your mote begins each [Encounter] with 30 mote points instead of 15 mote points. Once per [Encounter], if you are the target of a spell, after knowing the results of the spell's effect, you may ignore the spell's effect.. If this spell would have dealt damage, it is dealt to the mote instead; it loses one mote point for each damage dealt.
+At 12th level, your mote begins each [Encounter] with 45 mote points instead of 30 mote points, and you no longer require line of effect to move it to a target square.
+At 16th level, you gain another mote. Each mote no longer disappears and reappears when you are further than 80 ft from it.
+
+Telekinetic Adept
+Mind over matter, brains over brawn. Benefit: You can spend a swift action to move an object that you could normally wield as a weapon (improvised or otherwise) within [Close] range, to anywhere else within your [Close] range. If this ability is used to move a weapon to an ally's square, that ally may immediately begin wielding or switch to wielding that weapon. You may not use this ability to fling objects at opponents to damage them, or move objects carried or worn by another creature. This is a supernatural ability.
+In addition, you gain a +2 feat bonus to Athletics checks, and may now use your Intelligence modifier instead of your Strength modifier for determining your bonus to Athletics checks. Special: If you have the Dartmuth Secret feat, you may choose to use Arcana checks in place of Athletics checks you make, and you gain a +2 feat bonus to Arcana checks instead of Athletics checks.
+
+Telekinetic Scion
+Your mind can produce all the force of a wrecking ball, with about as much finesse. Prerequisites: Telekinetic Adept, 6th level Benefit: As a standard action, you may move any number of unsecured objects with a combined weight of up to 2000 pounds within your [Medium] range, to anywhere else within your [Medium] range if no squares are occupied in their destination areas. You may not use this ability to move a creature that is not [Dead], a creature's equipment, or a mount with at least one occupant.
+In addition, you can pummel opponents with pure telekinetic force. As a standard action, you may create a spread with a radius of your [Close] range originating from you that deals damage equal to 1d4 per two character levels you possess (minimum 1d4) plus your Intelligence Modifier to all opponents within its area. A successful Reflex save (DC 10+ ½ your character level + your Intelligence Modifier) halves the damage. This is a supernatural ability.
+
+Telekinetic Strength
+Your mental powers have become a deadly weapon, sharpened to pinpoint precision. Prerequisites: Telekinetic Scion Benefit: The combined weight of objects you can move with Telekinetic Scion is doubled, and the damage of your telekinetic force increases to 1d6 per two character levels plus Intelligence modifier. In addition, once every two [Rounds], as a standard action, you may deal damage equal to six times your Intelligence modifier to a single opponent within [Close] range. This is a spell-like ability.
+
+Telekinetic Master
+Your powers have begun to change you, and your body is held together as much by your will as by ordinary biological processes. Prerequisites: By Will Sustained, Telekinetic Scion, 12th level Benefit: The combined weight of objects you can move with Telekinetic Scion is tripled. In addition, you gain two additional HP per character level you possess, and [Fast healing] equal to your character level.
+Benefit: You gain [Tremorsense] out to 20 ft. This widens to 30 ft at 5th level. At 10th level, your [Tremorsense] widens to 40 ft.
+
+The Left Hand of Death
+Your life force can malevolently suppress healing effects for a short time. Prerequisites: 12th level, must not possess The Right Hand of Creation Benefit: You disrupt the workings of life itself. Twice per [Scene], as a move action, you may create a spread with a radius of your [Close] range originating from you, which moves with you and lasts for two [Rounds]. All effects that heal HP within the spread are delayed for one [Round ] after they are used.
+
+The Bigger They Are
+An enemy taller than you has his weak spots at eye level, and you've learned to take advantage of the fact. Benefit: When attacking a creature one or more size category larger than yourself, your attacks deal 1 additional damage per 2 levels (minimum 1).
+
+The Bitter Dregs
+You appear to be the last sober person in the world, which gives you a certain grim determination. Prerequisites: Must not possess Livers Need Not Apply, 9th level Benefit: You gain a +1 feat bonus to all d20 rolls.
+
+The Right Hand of Creation
+Your spirit has the power to temporarily ward off death. Prerequisites: 12th level, must not possess The Left Hand of Death Benefit: You disrupt the terrible mechanism of death itself. Twice per [Scene], as a move action, you may create a spread with a radius of your [Close] range originating from you, which moves with you and lasts two [Rounds]. Damage dealt within the spread may be delayed for one [Round] after it is inflicted. This does not require an action.
+
+The Earth Cracks
+You bear the sigil of the Broken Earth on your skin, a tightly woven nest of hooped lines that writhe uneasily. Representing the cycle of geological time, it provides an anchor for your deathless patron whose name has been lost since before the rise of man.
+
+The Sky Empties
+The stars are no longer visible to you at night. When you stare up, you see great dappled ripples slowly moving across the heavens, like fabric caught in the wind, and can mimic their motion to phase through space. Prerequisites: The Earth Cracks
+Benefit: You gain the ability to [Teleport] 5 ft per character level as a move action twice per [Encounter].
+At 6th level, as a swift action, when you next [Teleport], you may create a line with a length of up to 5 ft per level originating from your starting square and extending toward your destination square, which deals 2 energy damage with the [Electricity] descriptor to all creatures within the line.
+
+The Smell of Napalm
+You can emit a shockwave of booze-fueled vitality, searing away the flesh of your foes. Prerequisites: Livers Need Not Apply, 12th level Benefit: By taking a move action to spend all of your drinks from the Livers Need Not Apply feat, you may apply [HP reduction] to all opponents in [Close] range, equal to 4 points per drink spent.
+
+The Sun Grows Dim
+You bear the sigil of the Brass Dawn on your skin, a vast, tessellating design that serves as a channel for your patron. This deathless and forgotten entity is said to be the embodiment of the first sunset and the second sunrise. Benefit: As a swift action you can draw together the shadows to form one of the following: a melee or ranged weapon with the [Hold-out] and [Quick-draw] weapon properties, and one other weapon property of your choice; or another small, mundane object no bigger than 1 cubic foot. This weapon or object manifests in your hand or on your person, and fades to dust at the end of the [Encounter].
+At 5th level, once per [Scene], as a standard action, you may create little, shadowy servitors using this ability, allowing you to cast prying eyes as a spell-like ability.
+At 10th level, you can communicate through the shadowy eyes created by this spell-like ability, and gain a +2 to all interaction skill checks made through them or in their presence.
+
+Three Body Collision
+Hit an enemy with a building, or hit a building with an enemy ­ either way, the enemy gets hurt. Prerequisites: 9th level Benefit: Once per [Round], when you hit an adjacent opponent with a melee attack, you may immediately perform a Bull Rush against that opponent. Once per [Round] when using the Bull Rush maneuver against target opponent, if that opponent is adjacent to an obstacle or occupied square and you are able to push them 5 ft or further, you may forgo the ability to push that opponent further to deal damage equal to your character level against that opponent and any creatures in that square.
+
+Towering
+You are built to a bigger scale. You are faster, stronger, taller, and simply more deadly. Prerequisites: [Large] or [Huge] size Benefit: Unless you are [Swimming] or [Burrowing], you can make melee attacks against [Flying] creatures even if you are not [Flying], and [Flying] creatures cannot pass through your space during their movements. You have [Lesser resistance] against damage from opponents who are not [Flying].
+
+Troubleshooter
+You find trouble and shoot it. Benefit: You can always walk away from a social encounter without losing tokens, and the DC of Diplomacy and Intimidate checks made against you increases by 2.
+
+Truly Bad People
+The blood you bleed is black indeed. Benefit: The first time each [Round] an attack hits you, you deal damage equal to your character level to any one creature of your choice in [Melee] range.
+
+Wake
+You leave suffering and devastation wherever you go. Benefit: Twice per [Round], when you exit a square during a 5 ft step or during an action, you may deal damage equal to your KOM to target opponent in a square adjacent to that square and move that opponent 5 ft in a direction of your choice, which does not provoke attacks of opportunity.
+This feat does not activate when you are moved out of a square by someone else (such as by the Bull Rush combat maneuver) or when you move out of the square in which you started your turn. You may only use this ability once per 5 ft step or action.
+
+Wings of War
+You sprout wings of any appearance, which are powerful enough to carry you aloft. Prerequisites: 9th level Benefit: You gain the Fly movement mode. If you have the Ride skill trained, you can also apply this transformation to your mount, granting it the Fly movement mode.
+
+Weaponized
+Your attacks are reliably deadly. Prerequisites: 6th level Benefit: Instead of rolling dice for base weapon damage, use your KOM if it is +1 or greater.
+This does not affect damage dice from additional damage such as the Sneak Attack ability of the Assassin track.
+
+Words of Power
+Your knowledge of the Words of Power offer you command over certain aspects of creation. Benefit: At 1st level, you know the Word of Shadow and may use Words of Power once per [Encounter]. As an immediate action, you may inflict the [Blinded] condition on target opponent within [Medium] range for the duration of his or her current action.
+At 5th level, you learn the Word of Sunset and may use Words of Power twice per [Encounter]. As an immediate action, you may become [Invisible] for one [Round].
+At 10th level, you learn the Word of the Wind and may use Words of Power three times per [Encounter]. Whenever you take a move action, you may disintegrate into swirling wind, reforming at the end of the movement. For the duration of your move action, you may pass through occupied squares and narrow gaps. You do not provoke attacks of opportunity during this move.
+
+You Will Falter
+Your menacing demeanor prevents enemies from effectively recovering from injuries. Prerequisites: 3rd level Benefit: Whenever an effect, including [Fast healing], would cause an opponent within [Close] range to heal any amount of HP, the amount that opponent heals is reduced by your level, to a minimum of half the original amount. This effect stacks with up to five other instances of the You Will Falter feat and up to two instances of the You Will Fail feat. (This does not affect the minimum amount healed when applying this ability.) Special: This feat may be taken twice.
+
+You Will Fail
+No man lives forever, and you have the power to make sure of it. Prerequisites: 9th level, You Will Falter Benefit: Whenever an effect other than [Fast healing] would cause an opponent within [Medium] range to heal any amount of HP, the amount that opponent heals is reduced by your level, to a minimum of one HP. This effect stacks with instances of the You Will Falter feat and up to one other instance of the You Will Fail feat. (This does not affect the minimum amount healed when applying this ability.) Special: This feat may be taken twice.
