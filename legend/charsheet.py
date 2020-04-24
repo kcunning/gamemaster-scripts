@@ -16,7 +16,7 @@ class Character:
     def add_base_skills(self):
         self.skills = {}
         for skill in skills.base:
-            self.skills[skill] = 2
+            self.skills[skill] = 0
 
     def __init__(self, **kwargs):
         # All the static stuff first
@@ -25,9 +25,14 @@ class Character:
         for stat in stats: 
             self.stats[stat] = kwargs['stats'][stat] if 'stats' in kwargs else 10
         simple = (('size', 'medium'), ('race', None), ('mclass', None), ('level', 1), ('name', None),
-            ('tracks', []), ('init_stat_bonus', None), ('init_skill_bonus', None))
+            ('tracks', []), ('init_stat_bonus', None), ('init_skill_bonus', None), ('init_extra_bonus', None))
         for attr, default in simple:
             setattr(self, attr, kwargs[attr] if attr in kwargs else default)
+
+        saves = ('Fort', 'Ref', 'Will')
+        self.saves = {}
+        for save in saves:
+            self.saves[save] = 0
 
         # Derived stuff. Not sure if should be attr or calc'd each time?
         self.initiative = self.get_mod('DEX')
@@ -41,37 +46,26 @@ class Character:
         self.dcs['MANEUVER'] += self.get_mod('STR') if self.get_mod('STR') > self.get_mod('DEX') else self.get_mod('DEX')
         self.add_base_skills()
 
-def apply_race(ch, race):
-    for stat, mod in race.stats:
-        ch.stats[stat] += mod
-    basic = (('size', 'average'), ('type', 'humanoid'), ('vision', None))
-    for attr, default in basic:
-        setattr(ch, attr, getattr(race, attr) if hasattr(race, attr) else default)
-    if hasattr(race, "skill_bonus"):
-        for s in race.skill_bonus:
-            ch = races.apply_skill_bonus(ch, s)
-    if hasattr(race, 'stats_choice') and ch.init_stat_bonus in race.stats_choice[0]:
-        ch = races.apply_ability_bonus(ch, ch.init_stat_bonus, 2)
-    if hasattr(race, 'skill_choice') and ch.init_skill_bonus in race.skill_choice[0]:
-        ch = races.apply_skill_bonus(ch, ch.init_skill_bonus)
-
-    return ch
+        self.bab = 0
+        self.ac = 10
 
 print("Starting program...")
 
 stats = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']
 
 mychar = Character(
-    stats={'STR': 12, 'DEX': 14, 'CON': 8, 'INT': 14, 'WIS': 18, 'CHA': 14},
-    size="small",
-    race="HUMAN",
+    stats={'STR': 10, 'DEX': 10, 'CON': 10, 'INT': 10, 'WIS': 10, 'CHA': 10},
+    race="orc",
     mclass="fighter",
     name="Tester",
     tracks=(('special', 'slow')),
-    init_skill_bonus='History'
+    init_stat_bonus='INT',
+    init_skill_bonus='History',
+    init_extra_bonus='Ref'
 )
 print("Initial")
 pprint (mychar.__dict__)
 print("Applying race")
-mychar = apply_race(mychar, getattr(races, mychar.race))
+r = getattr(races, mychar.race)
+mychar = r(mychar)
 pprint(mychar.__dict__)
