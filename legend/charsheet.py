@@ -6,6 +6,7 @@ from collections import OrderedDict
 from pprint import pprint
 
 import races
+import skills
 
 class Character:
     def get_mod(self, stat):
@@ -14,8 +15,7 @@ class Character:
 
     def add_base_skills(self):
         self.skills = {}
-        skills = ('engineering','nature')
-        for skill in skills:
+        for skill in skills.base:
             self.skills[skill] = 2
 
     def __init__(self, **kwargs):
@@ -25,7 +25,7 @@ class Character:
         for stat in stats: 
             self.stats[stat] = kwargs['stats'][stat] if 'stats' in kwargs else 10
         simple = (('size', 'medium'), ('race', None), ('mclass', None), ('level', 1), ('name', None),
-            ('tracks', []))
+            ('tracks', []), ('init_stat_bonus', None), ('init_skill_bonus', None))
         for attr, default in simple:
             setattr(self, attr, kwargs[attr] if attr in kwargs else default)
 
@@ -47,8 +47,14 @@ def apply_race(ch, race):
     basic = (('size', 'average'), ('type', 'humanoid'), ('vision', None))
     for attr, default in basic:
         setattr(ch, attr, getattr(race, attr) if hasattr(race, attr) else default)
-    for x in race.special:
-        ch = x(ch)
+    if hasattr(race, "skill_bonus"):
+        for s in race.skill_bonus:
+            ch = races.apply_skill_bonus(ch, s)
+    if hasattr(race, 'stats_choice') and ch.init_stat_bonus in race.stats_choice[0]:
+        ch = races.apply_ability_bonus(ch, ch.init_stat_bonus, 2)
+    if hasattr(race, 'skill_choice') and ch.init_skill_bonus in race.skill_choice[0]:
+        ch = races.apply_skill_bonus(ch, ch.init_skill_bonus)
+
     return ch
 
 print("Starting program...")
@@ -58,11 +64,12 @@ stats = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']
 mychar = Character(
     stats={'STR': 12, 'DEX': 14, 'CON': 8, 'INT': 14, 'WIS': 18, 'CHA': 14},
     size="small",
-    race="ELF",
+    race="HUMAN",
     mclass="fighter",
     name="Tester",
     tracks=(('special', 'slow')),
-    )
+    init_skill_bonus='History'
+)
 print("Initial")
 pprint (mychar.__dict__)
 print("Applying race")
