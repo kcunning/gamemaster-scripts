@@ -181,7 +181,7 @@ def create_map_matrix(lines):
             row.append(s)
         matrix.append(row)
 
-    print(matrix)
+    # print(matrix)
     return matrix
 
 def create_map_image(lines, style="base"):
@@ -191,7 +191,8 @@ def create_map_image(lines, style="base"):
         TODO: Better output file name.
         TODO: Actually use the style param
     ''' 
-    imgdir = os.path.abspath("images/base/")
+    path = "images/{style}/".format(style=style)
+    imgdir = os.path.abspath(path)
     outdir = os.path.abspath("output/")
     files = os.listdir(imgdir)
     png_files = filter(lambda x: x.endswith(".png"), files)
@@ -199,7 +200,7 @@ def create_map_image(lines, style="base"):
     # Get the tiles
     tiles = {}
     for fn in png_files:
-        imgpath = os.path.abspath("images/base/" + fn)
+        imgpath = os.path.abspath(path + fn)
         tiles[fn.split(".")[0]] = Image.open(imgpath)
 
     img_h = len(lines) * 40
@@ -265,15 +266,16 @@ def create_map_image(lines, style="base"):
 
     map_image.save(os.path.abspath("output/test_image.png"), "PNG")
 
-def main(fn="dungeon1.tsv", out="all"):
+def main(fn="temple.tsv", out="all"):
     lines = get_lines(fn)
     if out in ["all", "console"]:
         print_dungeon(lines)
 
     if out in ["all", "image"]:
         matrix = create_map_matrix(lines)
-        print(matrix)
-        create_map_image(matrix)
+        # print(matrix)
+        create_map_image(matrix, style="base")
+    print("Done. Image stored in output folder.")
 
 if __name__ == "__main__":
     main()

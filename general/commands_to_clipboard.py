@@ -20,19 +20,25 @@ def copy_commands(lines):
 
 commands = {
     "Rowan": [
-        '!r 1d20 + 9 Comp bow, first attack',
-        '!r 1d20 + 4 Comp bow, second attack',
-        '!r 1d20 - 1 Comp bow, third attack',
-        '!r 1d6 + 1d8 + 1d10 Bow Damage: Regular, Precision, Crit',
-        '!r 1d20 + 9 Percep',
-        '!r 1d20 + 7 Fort',
-        '!r 1d20 + 10 Reflex',
-        '!r 1d20 + 5 Will',
-        '!r 1d20 + 5 Skills: Forest Lore, Medicine, Nature, Scouting',
-        '!r 1d20 + 6 Skills: Athletics',
-        '!r 1d20 + 7 Skills: Survival',
-        '!r 1d20 + 8 Skills: Acrobatics, Stealth, Thievery'
+        '!r 1d20 + 10 Comp bow, first attack',
+        '!r 1d20 + 5 Comp bow, second attack',
+        '!r 1d20 + 0 Comp bow, third attack',
+        '!r 1 + 2d6 + 1d8 + 1d10 + 2d6 Bow Damage: Bonus, Regular, Precision, Crit',
+        '!r 1d20 + 8 Percep',
+        '!r 1d20 + 8 Fort',
+        '!r 1d20 + 11 Reflex',
+        '!r 1d20 + 8 Will',
+        '!r 1d20 + 6 Skills: Forest Lore, Nature, Scouting',
+        '!r 1d20 + 7 Skills: Athletics',
+        '!r 1d20 + 8 Skills: Medicine'
+        '!r 1d20 + 6 Skills: Survival',
+        '!r 1d20 + 9 Skills: Acrobatics, Stealth, Thievery'
     ],
+    "Seph-origin": [
+        '!r 10d10e10 Tech roll (Int, Tech) (spec Hacking)',
+        '!r 9d10e10 Science roll (Int, Science) (Electronics spec) ',
+        '!r 8d10e10 Academics roll (Int, Academics) (spec Mythology)'
+    ]
 }
 
-copy_commands(commands['Rowan'])
+copy_commands(commands['Seph-origin'])
