@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 import os, glob
 
-def get_classlevels(nm):
+def get_char_levels(nm):
     abbrvs = {
         'A': 'Alchemist',
         'B': 'Barbarian',
@@ -33,12 +33,10 @@ def get_classlevels(nm):
         for lvl in lvls:
             combos.append(ab+lvl)
             combos.append(ab+' '+lvl)
-
     rs = []
-    for combo in combos:
-        if combo in nm:
-            r = combo.replace(' ', '')[:-1]
-            rs.append(abbrvs[r])
+    for lvl in lvls:
+        if lvl in nm:
+            rs.append(lvl)
     return rs
 
 # all time will give you inactive players.
@@ -72,7 +70,10 @@ for fn in fnames:
         if not span.attrs['title'] in recent:
             recent.append(span.attrs['title'])
 
-char_classes = {}
+lvls = ['1', '2', '3', '4', '5', '6']
+char_levels = {}
+for lvl in lvls:
+    char_levels[lvl] = []
 
 for u in active:
     if not u in recent:
@@ -80,29 +81,13 @@ for u in active:
     else:
         act = ''
     print(active[u])
-    rs = get_classlevels(active[u])
+    rs = get_char_levels(active[u])
     print (rs)
     print('***')
     for r in rs:
-        if not r in char_classes:
-            char_classes[r]  = [active[u] + act]
-        else:
-            char_classes[r].append(active[u] + act)
+        char_levels[r].append(active[u] + act)
 
-keys = list(char_classes.keys())
-keys.sort()
-
-inactive_ppl = []
-for key in keys:
-    for u in char_classes[key]:
-        if '[Inactive]' in u:
-            inactive_ppl.append(u)
-
-
-for key in keys:
-    print('{key} ({n}):\n\t{users}'.format(
-        key=key, n=len(char_classes[key]), users='\n  '.join(char_classes[key])).replace(
-        "||", "|"))
-    print()
-
-print ("\n".join(inactive_ppl))
+for lvl in lvls:
+    print("\nLevel {x} [{n}]".format(x=lvl, n=len(char_levels[lvl])))
+    for char in char_levels[lvl]:
+        print('  ', char)
