@@ -25,7 +25,7 @@ def get_char_levels(nm):
         'Wt': 'Witch'
     }
 
-    lvls = ['1', '2', '3', '4', '5', '6']
+    lvls = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
     combos = []
 
@@ -70,7 +70,7 @@ for fn in fnames:
         if not span.attrs['title'] in recent:
             recent.append(span.attrs['title'])
 
-lvls = ['1', '2', '3', '4', '5', '6']
+lvls = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 char_levels = {}
 for lvl in lvls:
     char_levels[lvl] = []

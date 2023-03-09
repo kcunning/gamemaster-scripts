@@ -4,6 +4,11 @@
 *.tsv
 *.pdf
 *.csv
+*.html
+*.zip
+*.pdf
+pdfextract/output/*
+general/user-roster/DiscordChatExporter.CLI/*
 .DS_Store
 
 # Byte-compiled / optimized / DLL files

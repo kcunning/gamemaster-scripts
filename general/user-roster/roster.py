@@ -22,10 +22,14 @@ def get_classlevels(nm):
         'I': 'Investigator',
         'O': 'Oracle',
         'Sw': 'Swashbuckler',
-        'Wt': 'Witch'
+        'Wt': 'Witch',
+        'Su': 'Summoner',
+        'Ma': 'Magus',
+        'G': 'Gunslinger',
+        'In': 'Inventor'
     }
 
-    lvls = ['1', '2', '3', '4', '5', '6']
+    lvls = [ str(n) for n in range(0, 20) ]
 
     combos = []
 
@@ -38,7 +42,10 @@ def get_classlevels(nm):
     for combo in combos:
         if combo in nm:
             r = combo.replace(' ', '')[:-1]
-            rs.append(abbrvs[r])
+            try:
+                rs.append(abbrvs[r])
+            except KeyError:
+                print(abbrvs[r], "not found")
     return rs
 
 # all time will give you inactive players.
@@ -79,15 +86,15 @@ for u in active:
         act = ' [Inactive]'
     else:
         act = ''
-    print(active[u])
-    rs = get_classlevels(active[u])
-    print (rs)
-    print('***')
-    for r in rs:
-        if not r in char_classes:
-            char_classes[r]  = [active[u] + act]
-        else:
-            char_classes[r].append(active[u] + act)
+    print(active[u], act)
+    # rs = get_classlevels(active[u])
+    # print (rs)
+    # print('***')
+    # for r in rs:
+    #     if not r in char_classes:
+    #         char_classes[r]  = [active[u] + act]
+    #     else:
+    #         char_classes[r].append(active[u] + act)
 
 keys = list(char_classes.keys())
 keys.sort()
