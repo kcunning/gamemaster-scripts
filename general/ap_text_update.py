@@ -3,7 +3,7 @@ import re
 cont = True
 
 while cont:
-    print("Enter/Paste your content. 'x' to quit completely.")
+    print("Enter/Paste your content. 'x' to quit completely.\n> ", end="")
     contents = []
     while True:
         line = input()
@@ -23,5 +23,5 @@ while cont:
             print("Found dice roll", word)
             txt = txt.replace(word, "[[{w}]]".format(w=word))
 
-    print(txt)
+    print("\n", txt, "\n")
 
