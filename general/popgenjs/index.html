@@ -4,9 +4,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Population Generator, v2.0</title>
+	<script src="popgen.js"></script>
 </head>
 <body>
 	<h1>Population generator, 2.0</h1>
 	<p>This is a work in progress. It will be finished sometime before the heat death of the universe.</p>
+	<button type="button" onclick="getOneFamily(popGenData)">Get one family!</button>
+	<p id="fillme"></p>
+	<form>
+		<label for="popNum">Approximate number of residents:</label><input type="number" min="1" max="10000" name="popNum" id="popNum">
+	</form>
+	<button type="button" onclick="generatePopulation()">Get a CSV town!</button>
+	<p id="loading"></p>
 </body>
 </html>

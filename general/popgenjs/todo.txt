@@ -1,10 +1,67 @@
 To do
 =====
 
-* Base HTML page
+✅ Base HTML page
+* Tweaks
+	✅Marriage chance
+	✅Population %s from reddit sheet
+* Clean up
+	✅Console.logs
+	✅Unused code
+	✅Add in comments
+	✅Make it pretty!
+	  ✅Two columns
+	✅Update page copy
+	✅Make single family button work properly
+	✅Elder/Adult marriage is back!
+	  ✅Even if we hardcode "elder" into pvals, "adult" is sent back?!
+	✅Check to make sure averages are right.
 * Form fields
-* Format for DL?
+	✅Population number
+	✅Loading
+	  ✅sText won't update when function starts?
+* Format for DL
+	✅Base logic for CSV
+	✅Add in fields
+	✅Variable # of people in town
 * Get working with GH pages
 * Port businesses
+	✅Building types
+	✅Random building names
+	  ✅Get name data
+	✅Logic for buildings
+	  ✅Attach family to building
+	  ✅Why is everything coming back as a residence?!
+* Create random population
+	✅Sector
+	  ✅Bug in getRandomGroup
+	  ✅Not showing up in CSV?
+	✅Building names aren't showing up
+	✅Sometimes, we get buildings of one type?
+	✅Create random families, up to max pop
+	✅Creates a list of vals, each line is one person	
 * Port NPC
+	✅ Format for import
+	✅ Create random name
+	✅ Create random personality
+	✅ Add in ancestry 
+	✅ Add in gender
+	✅ Add in age
+	✅ Add to DOM
+	✅Change "Indeterminant" to "Gender-Neutral"
+	✅Make sure traits aren't duped
+* Script to import the rest of the data
+	✅ Got all the names!
+	✅ Got all the traits!
 * Port Families
+	✅Logic for families 
+	✅Update person generator to accept values
+	✅Add kids
+	✅What to do about last names?
+	✅Add to DOM
+	✅Add SES
+	✅Add jobs
+	✅Lowercase traits in file
+	✅Clean up last names. Some are encoded.
+		✅Write fixes data to files
+	✅Make sure elders and adults can't marry!

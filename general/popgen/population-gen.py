@@ -192,7 +192,7 @@ class Resident:
         '''
         self.ses = self.get_ses_type()
         self.age = self.get_age_type()
-        self.gender = self.get_random_group(['male', 'female', 'indeterminate'], [49, 49])
+        self.gender = self.get_random_group(['male', 'female', 'gender-neutral'], [49, 49])
         self.race = self.get_race()
         self.first_name, self.family_name = self.get_name()
         self.parents = [] # If a child is generated this way, they're an orphan
@@ -436,8 +436,8 @@ class Town:
                 gen = 'female'
             elif g == 'opposite' and r.gender == "female":
                 gen = 'male'
-            elif r.gender == "indeterminate":
-                gen = choice(['male', 'female', 'indeterminate'])
+            elif r.gender == "gender-neutral":
+                gen = choice(['male', 'female', 'gender-neutral'])
             else:
                 gen = r.gender
             d = {'age': r.age, 

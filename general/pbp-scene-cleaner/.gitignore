@@ -1,0 +1,7 @@
+DiscordChatExporter*
+*html
+*txt
+*csv
+local_settings.py
+__pycache__
+*pyc
