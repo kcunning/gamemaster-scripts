@@ -132,6 +132,7 @@ def scrub_ooc(dds, markers="(( ))"):
         if start in dd['Content'] and end in dd['Content']:
             c = dd['Content'][dd['Content'].find(end)+len(end):]
             dd['Content'] = c
+            cleaned.append(dd)
         if dd['Content'].strip():
             cleaned.append(dd)
     return cleaned
