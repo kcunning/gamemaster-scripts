@@ -1,0 +1,36 @@
+* Front-end
+	✅ Basic page
+	✅ Display error if no level selected.
+	✅ Display extra text.
+	✅ Display notes.
+	✅ Finish prettifying
+	✅ Add AON link
+* Research
+	✅ List of feats
+		🌠 https://2e.aonprd.com/Feats.aspx?q=%22ritual%22+&type=eqs&sort=level-asc+name-asc&display=table&columns=pfs+source+rarity+trait+level+prerequisite+summary+spoilers
+		🌠 https://docs.google.com/spreadsheets/d/1lBruQxRHzIEyDpe6ZqJbmKF17omqHnOZ1CZQ51eDtrM/edit#gid=0
+		✅Which ones apply?
+* Logic
+	✅ Basic logic (no feats)
+	* Var number of casters
+	✅ Get basic DC
+	* With bonuses: Chances of success
+	✅ Tally up feat bonuses
+* Feats
+	✅ Display feats
+		✅ Finish getRitualDiv: https://gomakethings.com/html-templates-with-vanilla-javascript/#:~:text=XSS%20attacks.)-,//%20Loop%20through%20each%20wizard,-for%20(let
+	✅ Select feats
+	✅ Values for feats
+	✅ Feats format?
+	✅ Load feats
+* Clean-up
+	✅ Remove console.logs
+	✅ Add proper comments
+	➡️ Upload to site
+
+Format for feat:
+- Title
+- AON link
+- Slug
+- Description
+- Modifies... 

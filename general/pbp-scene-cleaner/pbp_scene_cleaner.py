@@ -18,11 +18,12 @@ from datetime import datetime
 tpl = "exported_csv/* - {cat} - *.csv"
 # The exported filename format is {Name of your server} - {Category} - {channel} [{channel_id}].csv
 # Add every category you want to process to this list.
-categories = ['RP Channels']
+# categories = ['RP Channels']
+categories = []
 
 # Sometimes, you just want to run one channel in a category. Add the channel name to this list.
 # channels = ['*secure-group-text-messages*csv', '*kindred-party-line*csv']
-channels = []
+channels = ['exported_csv/ooc.csv']
 
 # Start and end dates for the export. Just copy and paste the Date from the CSV, since
 # we use dateutil, or use this format: M/D/YYYY H:MM AM/PM. 
@@ -166,6 +167,8 @@ for cat in categories:
 for channel in channels:
     fns += glob.glob(channel)
 
+print("Getting lines from", fns)
+
 for fn in fns:
     # Get the lines from the CSV
     lines = get_lines(fn)
@@ -192,7 +195,7 @@ for fn in fns:
         server, folder, channel = fn.split(' - ')
         channel = channel.split(' ')[0]
         first_date = dateutil.parser.parse(scene[0]['Date'])
-        tpl = "%Y-%m-%d"
+        tpl = "%Y-%m-%d-%H-%M"
         export_fn = "processed_txt/{date}_{channel}.txt".format(
             date=first_date.strftime(tpl),
             channel=channel)

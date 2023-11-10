@@ -1,0 +1,120 @@
+[
+  {
+    "title": "Ritualist Dedication",
+    "slug": "ritual_ded",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=2041",
+    "desc": "You have begun to master the difficult art of casting rituals.",
+    "mods": {
+         "primary_circumstance": {
+            "primary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the primary caster."},
+          "secondary_circumstance": {
+            "secondary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the secondary caster."}
+        }
+  },
+  {
+    "title": "Able Ritualist",
+    "slug": "able_rit",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=2662",
+    "desc": "Your readings on rituals make you a skilled participant.",
+    "mods": {
+         "primary_circumstance": {
+            "name": "primary_circumstance",
+            "primary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the primary caster."},
+          "secondary_circumstance": {
+            "name": "secondary_circumstance",
+            "secondary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the secondary caster."}
+        }
+  },
+  {
+    "title": "Ritual Researcher",
+    "slug": "ritual_res",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=1639",
+    "desc": "Careful research into the art of rituals has made you better at performing them.",
+    "mods": {
+          "primary_circumstance": {
+            "primary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the primary caster."},
+          "secondary_circumstance": {
+            "secondary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the secondary caster."}
+        }
+  },
+  {
+    "title": "Experienced Harrower",
+    "slug": "exp_harrow",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=4154",
+    "desc": "When you perform the harrowing ritual, the DC for the Primary Check is never more than the standard DC by level, and the cost for the ritual is halved.",
+    "mods": {
+          "primary_dc" :{
+            "primary_dc": -5,
+            "toggle": true,
+            "explainer": "You are the primary caster, and performing the Harrowing ritual."
+          }
+        }
+  },
+  {
+    "title": "Thaumaturgic Ritualist",
+    "slug": "thaum_rit",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=3711",
+    "desc": "Your studies into the supernatural have resulted in an especially strong knowledge of rituals.",
+    "mods": {
+         "primary_circumstance": {
+            "primary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the primary caster."}
+        }
+  },
+  {
+    "title": "Macabre Virtuoso",
+    "slug": "macabre_virt",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=3488",
+    "desc": "Any necromancer can create zombie and skeleton, but you know the secrets behind the creation of far more advanced undead monstrosities.",
+    "mods": {
+        "primary_circumstance":  {
+            "name": "primary_circumstance",
+            "primary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the primary caster, and you are casting a Create Undead ritual."}
+        }
+  },
+  {
+    "title": "Skeleton Commander",
+    "slug": "skel_com",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=3542",
+    "desc": "You gain the ability to summon your own skeletal minions.",
+    "mods": {
+          "primary_circumstance": {
+            "primary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the primary caster, and casting Create Undead for a skeletal undead."}
+        }
+  },
+  {
+    "title": "Avatar's Audience",
+    "slug": "avatar_aud",
+    "link": "https://2e.aonprd.com/Feats.aspx?ID=308",
+    "desc": "Your extensive service has made you a lesser herald of your deity, which affords you certain privileges.",
+    "mods": {
+         "primary_value": {
+            "name": "primary_value",
+            "primary_value": 55,
+            "toggle": true,
+            "explainer": "You are the primary caster, and are casting Avatar's Audience."},
+         "secondary_circumstance": {
+            "name": "secondary_circumstance",
+            "secondary_circumstance": 2,
+            "toggle": true,
+            "explainer": "You are the secondary caster, and helping someone who is casting Avatar's Audience."}
+        }
+  }
+]
