@@ -18,12 +18,11 @@ from datetime import datetime
 tpl = "exported_csv/* - {cat} - *.csv"
 # The exported filename format is {Name of your server} - {Category} - {channel} [{channel_id}].csv
 # Add every category you want to process to this list.
-# categories = ['RP Channels']
-categories = []
+categories = ['RP Channels']
 
 # Sometimes, you just want to run one channel in a category. Add the channel name to this list.
 # channels = ['*secure-group-text-messages*csv', '*kindred-party-line*csv']
-channels = ['exported_csv/ooc.csv']
+channels = ['']
 
 # Start and end dates for the export. Just copy and paste the Date from the CSV, since
 # we use dateutil, or use this format: M/D/YYYY H:MM AM/PM. 
@@ -57,7 +56,6 @@ if start and end:
 def get_lines(fn):
     ''' Gets the lines from the CSV
     '''
-    print("Getting lines...")
     lines = []
     with open(fn, encoding="utf-8") as f:
         reader = csv.reader(f)
@@ -131,9 +129,11 @@ def scrub_ooc(dds, markers="(( ))"):
     cleaned = []
     for dd in dds:
         if start in dd['Content'] and end in dd['Content']:
-            c = dd['Content'][dd['Content'].find(end)+len(end):]
+            # What we need to do is split the string up to the first marker, then after the second marker.
+            c1 = dd['Content'][:dd['Content'].find(start)]
+            c2 = dd['Content'][dd['Content'].find(end) + len(end):]
+            c = c1 + c2
             dd['Content'] = c
-            cleaned.append(dd)
         if dd['Content'].strip():
             cleaned.append(dd)
     return cleaned
@@ -166,8 +166,6 @@ for cat in categories:
     fns += glob.glob(tpl.format(cat=cat))
 for channel in channels:
     fns += glob.glob(channel)
-
-print("Getting lines from", fns)
 
 for fn in fns:
     # Get the lines from the CSV
